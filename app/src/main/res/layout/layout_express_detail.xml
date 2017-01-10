@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/corner_white_white"
+    android:visibility="gone">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="460dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:background="@drawable/corner_title"
+            android:gravity="center"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_star_blue"
+                android:id="@+id/express_detail_collect"
+                 />
+            <TextView
+                style="@style/TextView_normal_white"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/express_detail_plate"
+                android:text="沪D213213"
+                android:gravity="center"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_phone"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/express_detail_call"/>
+        </LinearLayout>
+
+
+        <com.siwei.tongche.views.timeline.view.TimeLineView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/bg_detail_top"
+            android:id="@+id/express_detail_schedule" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+            <TextView
+              style="@style/TextView_normal_gray"
+                android:text="任务：7890 东方明珠电视塔"
+                android:id="@+id/express_detail_taskNo_projectAddress"/>
+
+            <TextView
+                style="@style/TextView_normal_gray"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="right|center_vertical"
+                android:id="@+id/express_detail_sendLinkedMan"
+                android:text="欧阳明月"/>
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/list_item_margin"
+                android:layout_marginBottom="@dimen/list_item_margin">
+                <TextView
+                    style="@style/TextView_normal_black"
+                    android:text="南通大名--->南通华润"
+                    android:id="@+id/express_detail_unit"/>
+
+                <TextView
+                    style="@style/TextView_normal_black"
+                    android:id="@+id/express_detail_historyNum"
+                    android:textColor="@color/text_blue"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="right|center_vertical"
+                    android:text="15000m³/150车"/>
+            </LinearLayout>
+
+            <TextView
+                style="@style/TextView_normal_gray"
+                android:text="任务：7890 东方明珠电视塔"
+                android:id="@+id/express_detail_castingPlace"/>
+
+            <View
+               style="@style/horizontal_Line"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                 >
+                <TextView
+                    style="@style/TextView_normal_gray"
+                    android:text="任务：7890 东方明珠电视塔"
+                    android:id="@+id/express_detail_expressNo_carBrand"/>
+
+                <TextView
+                    style="@style/TextView_normal_gray"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="right|center_vertical"
+                    android:text="欧阳明月"
+                    android:id="@+id/express_detail_receiveLinkedMan"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/list_item_margin"
+                android:layout_marginBottom="@dimen/list_item_margin">
+
+
+                    <TextView
+                        style="@style/TextView_large_black"
+                        android:text="C30细石"
+                        android:id="@+id/express_detail_TongType"/>
+                    <TextView
+                        style="@style/TextView_small_gray"
+                        android:text="（120+30 62米泵）"
+                        android:id="@+id/express_detail_jiaozhu"
+                        />
+                <TextView
+                    style="@style/TextView_normal_black"
+                    android:id="@+id/express_detail_num"
+                    android:textColor="@color/text_blue"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="right|center_vertical"
+                    android:text="10.5/29/10"/>
+            </LinearLayout>
+
+            <TextView
+                style="@style/TextView_normal_gray"
+                android:text="任务：7890 东方明珠电视塔"
+                android:id="@+id/express_detail_remarks"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/corner_blue_blue"
+                android:textColor="@color/white"
+                android:text="收起小票"
+                android:id="@+id/close_layout"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

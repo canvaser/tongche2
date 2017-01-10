@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/bg_gray"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/normal_title" />
+
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_height="50dp"
+        android:paddingLeft="10dp"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        >
+        <TextView
+            android:gravity="center_vertical"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/textsize_normal"
+            android:text="申诉单位"
+            android:layout_width="100dp"
+            android:layout_height="50dp" />
+        <EditText
+            android:paddingRight="10dp"
+            android:gravity="center_vertical|right"
+            android:id="@+id/et_input"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/textsize_normal"
+            android:text="请输入单位名称"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:layout_width="match_parent"/>
+    </LinearLayout>
+
+    <TextView
+    style="@style/TextView_normal_gray"
+    android:layout_marginLeft="10dp"
+    android:text="营业执照"
+    android:layout_height="30dp"
+    android:layout_width="match_parent"/>
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+        <ImageView
+            android:id="@+id/iv_addlicensea"
+            android:layout_centerInParent="true"
+            android:src="@drawable/upload_driver_add_gray"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+    </RelativeLayout>
+
+    <TextView
+        style="@style/TextView_normal_gray"
+        android:layout_marginLeft="10dp"
+        android:text="营业执照"
+        android:layout_height="30dp"
+        android:layout_width="match_parent"/>
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+        <ImageView
+            android:id="@+id/iv_addlicenseb"
+            android:layout_centerInParent="true"
+            android:src="@drawable/upload_driver_add_gray"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+    </RelativeLayout>
+
+    <TextView
+        style="@style/TextView_normal_gray"
+        android:layout_marginLeft="10dp"
+        android:text="组织机构代码证"
+        android:layout_height="30dp"
+        android:layout_width="match_parent"/>
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+        <ImageView
+            android:id="@+id/iv_originid"
+            android:layout_centerInParent="true"
+            android:src="@drawable/upload_driver_add_gray"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_save"
+        style="@style/Style_Btn_normal"
+        android:text="提交审核" />
+</LinearLayout>

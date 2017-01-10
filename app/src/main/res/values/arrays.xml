@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="ptr_frame_colors">
+        <item>@color/text_red</item>
+        <item>@color/text_red</item>
+    </integer-array>
+
+</resources>

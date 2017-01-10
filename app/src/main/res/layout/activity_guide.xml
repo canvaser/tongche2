@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:background="@color/white"
+   >
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:id="@+id/viewPager"
+        >
+    </android.support.v4.view.ViewPager>
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:id="@+id/btn_enter"
+        android:text="立即体验"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/white"
+        android:layout_above="@+id/pointWidget"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"/>
+    <com.siwei.tongche.views.PointWidget
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pointWidget"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp">
+
+    </com.siwei.tongche.views.PointWidget>
+</RelativeLayout>

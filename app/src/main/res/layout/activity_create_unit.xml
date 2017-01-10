@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_create_unit"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+ android:orientation="vertical"
+    android:fitsSystemWindows="true">
+    <include layout="@layout/normal_title"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:id="@+id/rg_allUnit">
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:button="@null"
+            android:text="发货单位"
+            android:drawableRight="@drawable/selector_check_box"
+            android:id="@+id/unit_fahuo"/>
+        <View
+           style="@style/horizontal_Line"/>
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:button="@null"
+            android:text="收货单位"
+            android:drawableRight="@drawable/selector_check_box"
+            android:id="@+id/unit_shouhuo"/>
+        <View
+            style="@style/horizontal_Line"/>
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:button="@null"
+            android:text="租赁单位"
+            android:drawableRight="@drawable/selector_check_box"
+            android:id="@+id/unit_zulin"/>
+    </RadioGroup>
+
+    <Button
+        style="@style/Style_Btn_normal"
+        android:id="@+id/btn_createUnit"
+        android:text="确认"/>
+</LinearLayout>

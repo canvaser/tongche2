@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_setting"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
+    <include layout="@layout/normal_title"/>
+    <com.siwei.tongche.views.SDSimpleSetItemView
+        android:id="@+id/setting_layout_messageSetting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.siwei.tongche.views.SDSimpleSetItemView
+        android:id="@+id/setting_layout_incomeSetting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.siwei.tongche.views.SDSimpleSetItemView
+        android:id="@+id/setting_layout_updatePwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.siwei.tongche.views.SDSimpleSetItemView
+        android:id="@+id/setting_layout_feedBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.siwei.tongche.views.SDSimpleSetItemView
+        android:id="@+id/setting_layout_about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

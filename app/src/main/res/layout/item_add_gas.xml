@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp">
+
+
+        <TextView
+            android:id="@+id/addGas_time"
+            style="@style/TextView_small_gray"
+            android:text="时间：2016年12月16日"
+            />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="@dimen/list_item_margin"
+        android:layout_marginTop="@dimen/list_item_margin">
+
+        <TextView
+            android:id="@+id/addGas_money"
+            style="@style/TextView_small_gray"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="金额：600元" />
+        <TextView
+            android:id="@+id/addGas_num"
+            style="@style/TextView_small_gray"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="加油数量：50升" />
+        <TextView
+            android:id="@+id/addGas_distance"
+            style="@style/TextView_small_gray"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="公里数：6765公里" />
+
+    </LinearLayout>
+
+        <TextView
+            android:id="@+id/addGas_name"
+            style="@style/TextView_small_gray"
+            android:text="加油人：傻逼"
+            android:drawableRight="@drawable/icon_phone"
+            android:drawablePadding="10dp"/>
+
+
+
+    <View
+        style="@style/horizontal_Line"
+        android:layout_marginTop="5dp"/>
+
+    <Button
+        style="@style/Style_Btn_normal"
+        android:layout_margin="10dp"
+        android:layout_width="60dp"
+        android:layout_height="20dp"
+        android:text="作废"
+        android:layout_gravity="right"
+        />
+</LinearLayout>
+

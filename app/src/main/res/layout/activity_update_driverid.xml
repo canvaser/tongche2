@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/bg_gray"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/normal_title" />
+
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_height="50dp"
+        android:paddingLeft="10dp"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        >
+        <EditText
+            android:gravity="center_vertical"
+            android:id="@+id/et_input"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/textsize_normal"
+            android:hint="请输入驾驶证号码"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:layout_width="match_parent"/>
+    </LinearLayout>
+
+    <TextView
+        style="@style/TextView_normal_gray"
+        android:layout_marginLeft="10dp"
+        android:text="上传驾驶证照片"
+        android:layout_height="30dp"
+        android:layout_width="match_parent"/>
+    
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="140dp">
+        <ImageView
+            android:id="@+id/iv_addpic"
+            android:layout_centerInParent="true"
+            android:src="@drawable/upload_driver_add_gray"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+        </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_save"
+        style="@style/Style_Btn_normal"
+        android:text="保存" />
+</LinearLayout>

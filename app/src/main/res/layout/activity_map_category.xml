@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:sothree="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_map_category"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
+    <include layout="@layout/normal_title" />
+    <com.sothree.slidinguppanel.SlidingUpPanelLayout
+        android:id="@+id/sliding_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        sothree:umanoPanelHeight="@dimen/PanelHeight"
+        sothree:umanoShadowHeight="4dp"
+        sothree:umanoParallaxOffset="100dp"
+        sothree:umanoDragView="@+id/dragView"
+        sothree:umanoOverlay="true"
+        sothree:umanoScrollableView="@+id/list"
+        >
+        <!-- MAIN CONTENT -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <com.baidu.mapapi.map.MapView
+                android:id="@+id/mapView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/PanelHeight">
+            </com.baidu.mapapi.map.MapView>
+        </LinearLayout>
+
+        <!-- SLIDING LAYOUT -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/top_color"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="false"
+            android:id="@+id/dragView">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/PanelHeight"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:id="@+id/layout_PanelHeight">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/pic_line"/>
+            </LinearLayout>
+            <in.srain.cube.views.ptr.PtrClassicFrameLayout
+                android:id="@+id/ptrFrame"
+                xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                cube_ptr:ptr_duration_to_close="300"
+                cube_ptr:ptr_duration_to_close_header="2000"
+                cube_ptr:ptr_keep_header_when_refresh="true"
+                cube_ptr:ptr_pull_to_fresh="false"
+                cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
+                cube_ptr:ptr_resistance="1.7">
+
+            <in.srain.cube.views.loadmore.LoadMoreListViewContainer
+                android:id="@+id/loadMore"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+            <ListView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:dividerHeight="10dp"
+                android:divider="@android:color/transparent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:clipToPadding="false"
+                android:clipChildren="false"
+                android:scrollbars="none">
+            </ListView>
+            </in.srain.cube.views.loadmore.LoadMoreListViewContainer>
+
+            </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+        </LinearLayout>
+    </com.sothree.slidinguppanel.SlidingUpPanelLayout>
+
+</LinearLayout>

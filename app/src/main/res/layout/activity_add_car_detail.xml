@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_user"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
+
+    <include layout="@layout/normal_title"/>
+    <ScrollView
+        android:background="@color/bg_gray"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:id="@+id/layout_pic_car">
+                    <ImageView
+                        android:id="@+id/pic_car"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:src="@drawable/accident_add_pic"
+                        android:layout_margin="10dp"/>
+                    <TextView
+                       style="@style/TextView_normal_gray"
+                        android:text="上传车辆照片"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:id="@+id/layout_pic_drivingLicence">
+                    <ImageView
+                        android:id="@+id/pic_drivingLicence"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:src="@drawable/accident_add_pic"
+                        android:layout_margin="10dp"/>
+                    <TextView
+                        style="@style/TextView_normal_gray"
+                        android:text="上传行驶证"/>
+                </LinearLayout>
+            </LinearLayout>
+<LinearLayout
+    android:layout_marginTop="10dp"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+            <LinearLayout
+                style="@style/Style_normal_item_layout"
+                >
+                <TextView
+                    style="@style/TextView_normal_black"
+                    android:text="车牌"/>
+
+                <EditText
+                    style="@style/Style_Edittext_normal"
+                    android:gravity="right"
+                    android:hint="请输入"
+                   android:id="@+id/car_plate"/>
+            </LinearLayout>
+            <View
+               style="@style/horizontal_Line"/>
+
+            <LinearLayout
+                style="@style/Style_normal_item_layout"
+                 >
+                <TextView
+                    style="@style/TextView_normal_black"
+                    android:text="车号"/>
+
+                <EditText
+                    style="@style/Style_Edittext_normal"
+                    android:gravity="right"
+                    android:hint="请输入"
+                    android:id="@+id/car_carNo"/>
+            </LinearLayout>
+            <View
+                style="@style/horizontal_Line"/>
+
+
+            <LinearLayout
+                style="@style/Style_normal_item_layout"
+                >
+                <TextView
+                    style="@style/TextView_normal_black"
+                    android:text="规格"/>
+
+                <EditText
+                    style="@style/Style_Edittext_normal"
+                    android:gravity="right"
+                    android:hint="请输入"
+                    android:id="@+id/car_size" />
+            </LinearLayout>
+            <View
+                style="@style/horizontal_Line"/>
+
+
+            <LinearLayout
+                style="@style/Style_normal_item_layout"
+                >
+                <TextView
+                    style="@style/TextView_normal_black"
+                    android:text="品牌"/>
+
+                <EditText
+                    style="@style/Style_Edittext_normal"
+                    android:gravity="right"
+                    android:hint="请输入"
+                    android:id="@+id/car_brand"/>
+            </LinearLayout>
+            <View
+                style="@style/horizontal_Line"/>
+
+
+            <LinearLayout
+                style="@style/Style_normal_item_layout"
+                >
+                <TextView
+                    style="@style/TextView_normal_black"
+                    android:text="所属单位"/>
+
+                <EditText
+                    style="@style/Style_Edittext_normal"
+                    android:gravity="right"
+                    android:hint="请输入"
+                    android:id="@+id/car_unit"/>
+            </LinearLayout>
+            <View
+                style="@style/horizontal_Line"/>
+
+
+            <LinearLayout
+                style="@style/Style_normal_item_layout"
+                >
+                <TextView
+                    style="@style/TextView_normal_black"
+                    android:text="车辆年限"/>
+
+                <EditText
+                    style="@style/Style_Edittext_normal"
+                    android:gravity="right"
+                    android:hint="请输入"
+                    android:id="@+id/car_years"/>
+            </LinearLayout>
+            <View
+                style="@style/horizontal_Line"/>
+
+
+            <LinearLayout
+                style="@style/Style_normal_item_layout"
+                >
+                <TextView
+                    style="@style/TextView_normal_black"
+                    android:text="已行驶公里数"/>
+
+                <EditText
+                    style="@style/Style_Edittext_normal"
+                    android:gravity="right"
+                    android:hint="请输入"
+                    android:id="@+id/car_mileage"/>
+            </LinearLayout>
+            <View
+                style="@style/horizontal_Line"/>
+
+
+            <LinearLayout
+                style="@style/Style_normal_item_layout"
+                >
+                <TextView
+                    style="@style/TextView_normal_black"
+                    android:text="保养公里数"/>
+
+                <EditText
+                    style="@style/Style_Edittext_normal"
+                    android:gravity="right"
+                    android:hint="请输入"
+                    android:id="@+id/car_maintenance_mileage"/>
+            </LinearLayout>
+            <View
+                style="@style/horizontal_Line"/>
+
+            >
+</LinearLayout>
+            <TextView
+
+                style="@style/TextView_small_white"
+                android:textColor="@color/text_blue"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="跳过 直接提交"/>
+            <Button
+                style="@style/Style_Btn_normal"
+                android:text="下一步"
+                android:id="@+id/addCar"/>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

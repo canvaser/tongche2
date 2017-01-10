@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_user"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
+
+    <include layout="@layout/normal_title"/>
+
+    <LinearLayout
+        style="@style/Style_normal_item_layout"
+        android:layout_marginTop="10dp">
+        <TextView
+            style="@style/TextView_normal_black"
+            android:text="车牌"/>
+
+        <EditText
+            style="@style/Style_Edittext_normal"
+            android:gravity="right"
+            android:hint="请输入车牌"
+            android:id="@+id/plate_number"/>
+    </LinearLayout>
+
+    <Button
+        style="@style/Style_Btn_normal"
+        android:text="下一步"
+        android:id="@+id/addCarNext"/>
+
+</LinearLayout>

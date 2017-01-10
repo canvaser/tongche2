@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:background="@color/bg_gray" >
+    <include layout="@layout/normal_title"/>
+    <View
+        style="@style/horizontal_Line"
+        android:layout_height="5dp"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                style="@style/Style_normal_item_layout"
+                android:layout_height="70dp"
+                android:id="@+id/baseInfo_layout_header"
+               >
+                <TextView
+                    style="@style/TextView_normal_black"
+                    android:text="头像"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"/>
+                <com.siwei.tongche.views.RoundImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/baseInfo_header"
+                    android:src="@drawable/default_header"/>
+            </LinearLayout>
+            <View style="@style/horizontal_Line"/>
+            <LinearLayout
+                style="@style/Style_normal_item_layout"
+                android:id="@+id/baseInfo_layout_name" >
+                <TextView
+                    style="@style/TextView_normal_black"
+                    android:text="真实姓名"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"/>
+                <TextView
+                    style="@style/TextView_normal_black"
+                    android:text="韩先生"
+                   android:id="@+id/baseInfo_name"/>
+            </LinearLayout>
+
+            <View style="@style/horizontal_Line"/>
+            <LinearLayout
+                style="@style/Style_normal_item_layout"
+                android:id="@+id/baseInfo_layout_userType" >
+                <TextView
+                    style="@style/TextView_normal_black"
+                    android:text="用户角色"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"/>
+                <TextView
+                    style="@style/TextView_normal_black"
+                    android:text="韩先生"
+                    android:id="@+id/baseInfo_userType"/>
+            </LinearLayout>
+
+
+            <View style="@style/horizontal_Line"/>
+            <LinearLayout
+                style="@style/Style_normal_item_layout"
+                android:id="@+id/baseInfo_layout_mobile" >
+                <TextView
+                    style="@style/TextView_normal_black"
+                    android:text="手机号码"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"/>
+                <TextView
+                    style="@style/TextView_normal_black"
+                    android:text="12734543475"
+                    android:id="@+id/baseInfo_mobile" />
+            </LinearLayout>
+
+
+
+            <View style="@style/horizontal_Line"/>
+            <LinearLayout
+                android:visibility="gone"
+                style="@style/Style_normal_item_layout"
+                android:id="@+id/baseInfo_layout_QRCode" >
+                <TextView
+                    style="@style/TextView_normal_black"
+                    android:text="二维码名片"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"/>
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/qr_code_hint"
+                    />
+            </LinearLayout>
+            <View style="@style/horizontal_Line"/>
+            <LinearLayout
+                android:visibility="gone"
+                style="@style/Style_normal_item_layout"
+                android:id="@+id/baseInfo_layout_driverid" >
+                <TextView
+                    style="@style/TextView_normal_black"
+                    android:text="驾驶证号"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"/>
+                <TextView
+                    style="@style/TextView_normal_black"
+                    android:text="12734543475"
+                    android:id="@+id/baseInfo_driverid" />
+            </LinearLayout>
+            <View style="@style/horizontal_Line"/>
+            <LinearLayout
+                style="@style/Style_normal_item_layout"
+                android:id="@+id/baseInfo_layout_company" >
+                <TextView
+                    style="@style/TextView_normal_black"
+                    android:text="单位"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"/>
+                <TextView
+                    style="@style/TextView_normal_gray"
+                    android:text="上海思伟软件"
+                    android:id="@+id/baseInfo_company"/>
+            </LinearLayout>
+
+            <View style="@style/horizontal_Line"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

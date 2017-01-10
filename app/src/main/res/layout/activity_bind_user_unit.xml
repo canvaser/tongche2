@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_bind_user_unit"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/bg_gray"
+    android:orientation="vertical">
+    <include layout="@layout/normal_title"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:padding="10dp">
+        <TextView
+            style="@style/TextView_normal_black"
+            android:text="单位名称"/>
+
+        <TextView
+            style="@style/TextView_small_gray"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="已绑定"
+            android:gravity="right"
+            android:layout_marginRight="10dp"/>
+
+        <EditText
+            android:id="@+id/et_depart"
+            style="@style/Style_Edittext_normal"
+            android:hint="请输入单位"/>
+    </LinearLayout>
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/recyclerView_unit"/>
+
+    <TextView
+        android:id="@+id/tv_report"
+        android:layout_gravity="right"
+        android:textSize="@dimen/textsize_small"
+        android:textColor="@color/text_blue"
+        android:text="申诉"
+        android:paddingRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        style="@style/Style_Btn_normal"
+        android:text="提交审核"
+        android:id="@+id/bindUnit"/>
+
+
+</LinearLayout>

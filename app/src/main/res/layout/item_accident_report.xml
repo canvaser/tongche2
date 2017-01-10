@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/message_time"
+            style="@style/TextView_small_gray"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="时间：2016年12月16日" />
+
+        <ImageView
+            android:id="@+id/iv_tomap"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/icon_location"/>
+    </LinearLayout>
+    <View
+        style="@style/horizontal_Line"
+        android:layout_marginTop="5dp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/default_header"
+            android:layout_margin ="10dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/accident_type"
+                style="@style/TextView_normal_black"
+                android:text="故障类型：故障类型" />
+            <TextView
+                android:id="@+id/accident_desc"
+                style="@style/TextView_normal_black"
+                android:text="故障描述：故障类型"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+            <TextView
+                android:id="@+id/accident_location"
+                style="@style/TextView_normal_black"
+                android:text="故障地点：故障类型" />
+
+
+        </LinearLayout>
+
+           </LinearLayout>
+    <View
+        style="@style/horizontal_Line"
+         />
+    <Button
+        style="@style/Style_Btn_normal"
+        android:layout_margin="5dp"
+        android:layout_width="60dp"
+        android:layout_height="20dp"
+        android:text="作废"
+        android:layout_gravity="right"
+        />
+</LinearLayout>
+

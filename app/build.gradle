@@ -1,0 +1,130 @@
+apply plugin: 'com.android.application'
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.0"
+    defaultConfig {
+        applicationId "com.siwei.tongche"
+        minSdkVersion 12
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        // 默认是umeng的渠道
+        manifestPlaceholders = [UMENG_CHANNEL_VALUE: "siwei"]
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file("keystore/TongChe.jks")
+            storePassword "tongche"
+            keyAlias "TongChe"
+            keyPassword "tongche"
+        }
+
+        release {
+            storeFile file("keystore/TongChe.jks")
+            storePassword "tongche"
+            keyAlias "TongChe"
+            keyPassword "tongche"
+        }
+    }
+
+    useLibrary 'org.apache.http.legacy'
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
+        release {
+            signingConfig signingConfigs.release
+
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        def fileName = "TongChe${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
+                        output.outputFile = new File(outputFile.parent, fileName)
+                    }
+                }
+            }
+            //混淆
+            minifyEnabled true
+            //前一部分代表系统默认的android程序的混淆文件，该文件已经包含了基本的混淆声明
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    //渠道Flavors,配置不同风格的app
+    productFlavors {
+        siwei {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "siwei"]
+        }
+        xiaomi {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
+        }
+        baidu {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
+        }
+        yingyongbao {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "yingyongbao"]
+        }
+        zhushou360 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "zhushou360"]
+        }
+        baidu91 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu91"]
+        }
+        baiduandroid {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baiduandroid"]
+        }
+        wandoujia {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wandoujia"]
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile 'junit:junit:4.12'
+    compile files('libs/baidumapapi_base_v4_0_0.jar')
+    compile files('libs/baidumapapi_map_v4_0_0.jar')
+    compile files('libs/baidumapapi_search_v4_0_0.jar')
+    compile files('libs/baidumapapi_util_v4_0_0.jar')
+    compile files('libs/BaiduNaviSDK_3.2.0.jar')
+    compile files('libs/butterknife-7.0.1.jar')
+    compile files('libs/eventbus-bin-1.0.jar')
+    compile files('libs/fastjson-1.1.40.jar')
+    compile files('libs/jpush-android-2.1.9.jar')
+    compile files('libs/locSDK_6.13.jar')
+    compile files('libs/systembartint-1.0.4.jar')
+
+    compile project(':libzxing')
+    compile project(':folding-cell')
+
+    compile 'com.android.support:appcompat-v7:25.0.0'
+    compile 'com.android.support:design:25.0.0'
+
+    compile 'com.kyleduo.switchbutton:library:1.4.0'
+    compile 'com.umeng.analytics:analytics:latest.integration'
+    compile 'com.loopj.android:android-async-http:1.4.9'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
+
+    compile 'com.sothree.slidinguppanel:library:3.3.1'
+
+    compile 'com.daimajia.swipelayout:library:1.2.0@aar'
+    compile 'com.bigkoo:pickerview:2.1.1'
+    compile 'com.zhy:base-rvadapter:3.0.3'
+
+    //一个简单的Android标签控件.
+    //https://github.com/H07000223/FlycoLabelView/blob/master/README_CN.md
+    compile 'com.flyco.labelview:FlycoLabelView_Lib:1.0.2@aar'
+
+    compile 'in.srain.cube:ultra-ptr:1.0.11'
+    compile 'in.srain.cube:cube-sdk:1.0.44@aar'
+}

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     >
+    <com.baidu.mapapi.map.MapView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/mapView">
+
+    </com.baidu.mapapi.map.MapView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/layout_top_select"
+        android:background="@color/top_color">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="#A0D64D"
+            android:id="@+id/layout_rent_workingCar">
+
+            <TextView
+                style="@style/TextView_normal_white"
+                android:text="工作车辆"
+                android:drawablePadding="5dp"
+                android:drawableTop="@drawable/icon_map_mixer"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="#B89BC9"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/layout_rent_freeCar">
+
+            <TextView
+                style="@style/TextView_normal_white"
+                android:text="空闲车辆"
+                android:drawablePadding="5dp"
+                android:drawableTop="@drawable/icon_map_mixer"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginRight="10dp"
+            android:background="#828BC6"
+            android:id="@+id/layout_rent_accidentCar">
+
+            <TextView
+                style="@style/TextView_normal_white"
+                android:text="故障车辆"
+                android:drawablePadding="5dp"
+                android:drawableTop="@drawable/icon_map_mixer"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="#FBB03B"
+            android:id="@+id/layout_rent_nearby">
+
+            <TextView
+                style="@style/TextView_normal_white"
+                android:text="附近搅拌站"
+                android:drawablePadding="5dp"
+                android:drawableTop="@drawable/icon_map_mixing_station"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:id="@+id/toggle_selectLayout">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pic_line"/>
+    </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

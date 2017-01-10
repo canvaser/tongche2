@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/incomeSetting_item_layout">
+
+    <LinearLayout
+        style="@style/Style_normal_item_layout"
+        android:gravity="right|center_vertical"
+        >
+       <EditText
+           android:textColor="@color/text_gray"
+           android:textSize="@dimen/textsize_normal"
+           android:layout_width="80dp"
+           android:layout_height="match_parent"
+           android:hint="单价"
+           android:background="@drawable/corner_gray_white"
+           android:layout_margin="10dp"
+           android:id="@+id/incomeSetting_price"/>
+        <TextView
+            style="@style/TextView_normal_gray"
+            android:text="-----"/>
+        <EditText
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/textsize_normal"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:hint="公里数"
+            android:background="@drawable/corner_gray_white"
+            android:layout_margin="10dp"
+            android:id="@+id/incomeSetting_distance"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:src="@drawable/dialog_close"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:id="@+id/incomeSetting_delete"
+            />
+    </LinearLayout>
+    <View style="@style/horizontal_Line"></View>
+</LinearLayout>

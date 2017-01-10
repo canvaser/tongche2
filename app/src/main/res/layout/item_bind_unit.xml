@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:descendantFocusability="blocksDescendants"
+    android:padding="10dp"
+    android:background="@color/white"
+    android:layout_marginBottom="1dp"
+    android:id="@+id/layout_unit"
+    >
+
+        <TextView
+            style="@style/TextView_normal_black"
+            android:id="@+id/item_unit_name"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="上海思伟有限公司"/>
+
+        <TextView
+            style="@style/TextView_normal_gray"
+            android:id="@+id/item_unit_linkMen"
+            android:layout_marginRight="20dp"
+            android:text="含金量 13652563251"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/item_unit_checkbox"
+            android:button="@drawable/selector_check_box"
+            android:clickable="false"/>
+
+</LinearLayout>

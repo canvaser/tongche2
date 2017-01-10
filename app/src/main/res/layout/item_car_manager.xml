@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="10dp"
+    >
+
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:src="@drawable/default_header"
+            android:layout_margin ="10dp"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+>
+
+            <TextView
+                android:id="@+id/tv_id"
+                style="@style/TextView_small_black"
+                android:text="故障类型：故障类型" />
+            <TextView
+                android:id="@+id/tv_num"
+                style="@style/TextView_small_black"
+                android:text="故障类型：故障类型" />
+            <TextView
+                android:id="@+id/tv_weight"
+                style="@style/TextView_small_black"
+                android:text="故障描述：故障类型"
+           />
+            <TextView
+                android:id="@+id/tv_info"
+                style="@style/TextView_small_black"
+                android:text="故障地点：故障类型" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_driverman"
+            style="@style/TextView_normal_black"
+            android:text="张驾驶"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:gravity="right"
+            android:drawableRight="@drawable/arrow_right_gray"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+
+</LinearLayout>
+

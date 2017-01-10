@@ -1,0 +1,66 @@
+<resources>
+
+    <style name="dialogBase" parent="@android:style/Theme.Dialog">
+
+        <!-- 边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">false</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@color/transparent</item>
+        <!-- 模糊 -->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="dialogBase.Menu">
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+    
+    
+    <!--  popWindow Style -->
+  <style name="MyPopWindow_anim_style" >
+    <item name="android:windowEnterAnimation">@anim/popshow_anim</item>
+ 	<!-- 指定显示的动画xml -->
+    <item name="android:windowExitAnimation">@anim/pophidden_anim</item>
+ 	<!-- 指定消失的动画xml -->
+  </style>
+  
+
+
+    <!-- 半透明背景style -->
+    <style name="MyDialogStyleBottom" parent="android:Theme.Dialog">
+        <item name="android:windowAnimationStyle">@style/MyPopWindow_anim_style</item>
+        <item name="android:windowFrame">@null</item>
+        <!-- 边框 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 背景透明 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 模糊 -->
+    </style>
+
+    <!--  popWindow Style -->
+    <style name="MyPopWindow_anim_normal" >
+        <item name="android:windowEnterAnimation">@anim/popup_enter</item>
+        <!-- 指定显示的动画xml -->
+        <item name="android:windowExitAnimation">@anim/popup_exit</item>
+        <!-- 指定消失的动画xml -->
+    </style>
+
+    <!--  popWindow Style -->
+    <style name="MyPopWindow_anim_normal_center" >
+        <item name="android:windowEnterAnimation">@anim/popup_enter_center</item>
+        <!-- 指定显示的动画xml -->
+        <item name="android:windowExitAnimation">@anim/popup_exit_center</item>
+        <!-- 指定消失的动画xml -->
+    </style>
+</resources>

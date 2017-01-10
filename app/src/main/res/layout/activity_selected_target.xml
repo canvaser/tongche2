@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:id="@+id/layout_mycars">
+
+    <include layout="@layout/normal_title" />
+    <View style="@style/horizontal_Line"
+        android:layout_height="5dp"/>
+    <ListView
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@color/bg_gray"
+        android:headerDividersEnabled="false"
+        android:scrollbars="none"
+        android:footerDividersEnabled="false"
+        android:dividerHeight="0.8dp"
+        android:id="@+id/list_targets">
+    </ListView>
+
+<Button
+   style="@style/Style_Btn_normal"
+    android:text="确认"
+    android:id="@+id/btn_select_target"
+    android:visibility="gone"/>
+
+</LinearLayout>

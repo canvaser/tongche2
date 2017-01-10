@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     >
+    <com.baidu.mapapi.map.MapView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/mapView">
+
+    </com.baidu.mapapi.map.MapView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/layout_top_select"
+        android:background="@color/top_color">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="#D9E021"
+            android:id="@+id/layout_map_project_today">
+
+            <TextView
+                style="@style/TextView_normal_white"
+                android:text="今日工程"
+                android:id="@+id/map_project_today"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@drawable/icon_phone"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="#9FD849"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/layout_map_project_my">
+
+            <TextView
+                style="@style/TextView_normal_white"
+                android:text="我的工程"
+                android:id="@+id/map_project_my"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@drawable/icon_phone"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="#8dc73f"
+            android:id="@+id/layout_map_project_nearby">
+
+            <TextView
+                style="@style/TextView_normal_white"
+                android:text="附近工程"
+                android:id="@+id/map_project_nearby"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@drawable/icon_phone"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="#B89BC9"
+            android:id="@+id/layout_map_car_today">
+
+            <TextView
+                style="@style/TextView_normal_white"
+                android:text="今日车辆"
+                android:id="@+id/map_car_today"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@drawable/icon_phone"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="#828B6C"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/layout_map_car_online">
+
+            <TextView
+                style="@style/TextView_normal_white"
+                android:text="排队车辆"
+                android:id="@+id/map_car_online"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@drawable/icon_phone"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="#fbb03b"
+            android:id="@+id/layout_map_mixingStation_nearly">
+
+            <TextView
+                style="@style/TextView_normal_white"
+                android:text="附近拌站"
+                android:id="@+id/map_mixingStation_nearly"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@drawable/icon_phone"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:id="@+id/toggle_selectLayout">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pic_line"/>
+    </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

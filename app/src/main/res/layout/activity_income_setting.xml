@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_income_setting"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="@color/bg_gray"
+    >
+    <include layout="@layout/normal_title"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+    <LinearLayout
+       style="@style/Style_normal_item_layout"
+        android:id="@+id/layout_unit"
+        android:layout_marginTop="5dp">
+        <TextView
+          style="@style/TextView_normal_black"
+            android:text="单位"/>
+        <TextView
+            style="@style/TextView_normal_gray"
+            android:id="@+id/tv_unit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="方"
+            android:gravity="right|center_vertical"
+            android:drawableRight="@drawable/selector_pressed_arrow_right"
+            android:drawablePadding="10dp"/>
+    </LinearLayout>
+
+    <View style="@style/horizontal_Line"/>
+
+    <LinearLayout
+        style="@style/Style_normal_item_layout"
+        android:id="@+id/layout_unit_car" >
+        <TextView
+            style="@style/TextView_normal_black"
+            android:text="单价"/>
+        <EditText
+            style="@style/Style_Edittext_normal"
+            android:text="30"
+            android:gravity="right|center_vertical"
+           />
+        <TextView
+            style="@style/TextView_normal_black"
+            android:text="元"/>
+    </LinearLayout>
+
+    <com.siwei.tongche.module.income_setting.views.IncomeSettingView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_incomeSettingView"
+        android:visibility="gone">
+
+    </com.siwei.tongche.module.income_setting.views.IncomeSettingView>
+
+    <LinearLayout
+        style="@style/Style_normal_item_layout"
+        android:layout_marginTop="5dp">
+        <TextView
+            style="@style/TextView_normal_black"
+            android:text="保底数量"/>
+        <EditText
+            style="@style/Style_Edittext_normal"
+            android:hint="请输入"
+            android:gravity="right|center_vertical"
+            />
+    </LinearLayout>
+    <View style="@style/horizontal_Line"/>
+
+    <LinearLayout
+        style="@style/Style_normal_item_layout"
+        >
+        <TextView
+            style="@style/TextView_normal_black"
+            android:text="保底工资"/>
+        <EditText
+            style="@style/Style_Edittext_normal"
+            android:hint="请输入"
+            android:gravity="right|center_vertical"
+            />
+    </LinearLayout>
+
+    <View style="@style/horizontal_Line"/>
+
+    <LinearLayout
+        style="@style/Style_normal_item_layout"
+         >
+        <TextView
+            style="@style/TextView_normal_black"
+            android:text="扣除"/>
+        <EditText
+            style="@style/Style_Edittext_normal"
+            android:hint="请输入"
+            android:gravity="right|center_vertical"
+            />
+    </LinearLayout>
+
+    <View style="@style/horizontal_Line"/>
+
+    <LinearLayout
+        style="@style/Style_normal_item_layout"
+        >
+        <TextView
+            style="@style/TextView_normal_black"
+            android:text="备注"/>
+        <EditText
+            style="@style/Style_Edittext_normal"
+            android:hint="请输入"
+            android:gravity="right|center_vertical"
+            />
+    </LinearLayout>
+
+    <View style="@style/horizontal_Line"/>
+
+    <LinearLayout
+        style="@style/Style_normal_item_layout"
+        >
+        <TextView
+            style="@style/TextView_normal_black"
+            android:text="生效日期"/>
+        <TextView
+            style="@style/TextView_normal_gray"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="请选择"
+            android:gravity="right|center_vertical"
+            android:drawableRight="@drawable/selector_pressed_arrow_right"
+            android:drawablePadding="10dp"/>
+    </LinearLayout>
+
+    <Button
+        style="@style/Style_Btn_normal"
+        android:text="提交"
+        android:id="@+id/incomeSettingOk"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

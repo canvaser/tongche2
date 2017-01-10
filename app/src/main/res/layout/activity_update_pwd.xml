@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/normal_title" />
+
+    <View
+        style="@style/horizontal_Line"
+        android:layout_height="5dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout style="@style/Style_normal_item_layout">
+
+            <com.siwei.tongche.views.ClearEditText
+                android:id="@+id/update_old"
+                style="@style/Style_Edittext_pwd"
+                android:hint="旧密码" />
+        </LinearLayout>
+
+        <View style="@style/horizontal_Line" />
+
+        <LinearLayout style="@style/Style_normal_item_layout">
+
+            <com.siwei.tongche.views.ClearEditText
+                android:id="@+id/update_new"
+                style="@style/Style_Edittext_pwd"
+                android:hint="新密码(6-16位数字和字母)" />
+        </LinearLayout>
+
+        <View style="@style/horizontal_Line" />
+
+        <LinearLayout style="@style/Style_normal_item_layout">
+
+            <com.siwei.tongche.views.ClearEditText
+                android:id="@+id/update_re_new"
+                style="@style/Style_Edittext_pwd"
+                android:hint="确认新密码" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_update_pwd"
+        style="@style/Style_Btn_normal"
+        android:text="确认修改" />
+</LinearLayout>

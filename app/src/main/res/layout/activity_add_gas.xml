@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_gas"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/top_color"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    tools:context="com.siwei.tongche.module.gasstation.activity.AddGasActivity">
+    <include layout="@layout/normal_title"/>
+
+    <LinearLayout
+       style="@style/Style_normal_item_layout">
+        <TextView
+            style="@style/TextView_normal_black"
+            android:text="金额"
+            android:layout_width="80dp"
+             />
+        <EditText
+            android:id="@+id/et_cost"
+            style="@style/Style_Edittext_normal"
+            android:hint="请输入金额"
+            android:gravity="center"/>
+    </LinearLayout>
+    <View
+       style="@style/horizontal_Line"/>
+
+
+    <LinearLayout
+        style="@style/Style_normal_item_layout">
+        <TextView
+            style="@style/TextView_normal_black"
+            android:text="加油数量"
+            android:layout_width="80dp"
+            />
+        <EditText
+            android:id="@+id/et_num"
+            style="@style/Style_Edittext_normal"
+            android:hint="请输入数量"
+            android:gravity="center"/>
+    </LinearLayout>
+    <View
+        style="@style/horizontal_Line"/>
+
+
+    <LinearLayout
+        style="@style/Style_normal_item_layout">
+        <TextView
+            style="@style/TextView_normal_black"
+            android:text="加油公里数"
+            android:layout_width="80dp"
+            />
+        <EditText
+            android:id="@+id/et_miles"
+            style="@style/Style_Edittext_normal"
+            android:hint="请输入公里数"
+            android:gravity="center"/>
+    </LinearLayout>
+    <View
+        style="@style/horizontal_Line"/>
+
+
+    <LinearLayout
+        style="@style/Style_normal_item_layout">
+        <TextView
+            style="@style/TextView_normal_black"
+            android:text="加油人"
+            android:layout_width="80dp"
+            />
+        <EditText
+            android:id="@+id/et_man"
+            style="@style/Style_Edittext_normal"
+            android:gravity="center"/>
+    </LinearLayout>
+    <View
+        style="@style/horizontal_Line"/>
+
+    <LinearLayout
+        style="@style/Style_normal_item_layout">
+        <TextView
+            style="@style/TextView_normal_black"
+            android:text="手机号"
+            android:layout_width="80dp"
+            />
+        <EditText
+            android:id="@+id/et_phone"
+            style="@style/Style_Edittext_normal"
+            android:gravity="center"/>
+    </LinearLayout>
+    <View
+        style="@style/horizontal_Line"/>
+
+    <LinearLayout
+        style="@style/Style_normal_item_layout">
+        <TextView
+            style="@style/TextView_normal_black"
+            android:text="时间"
+            android:layout_width="80dp"
+            />
+        <EditText
+            android:id="@+id/et_date"
+            style="@style/Style_Edittext_normal"
+            android:gravity="center"/>
+    </LinearLayout>
+    <View
+        style="@style/horizontal_Line"/>
+    <Button
+        android:id="@+id/btn_submit"
+        style="@style/Style_Btn_normal"
+        android:text="提交"/>
+</LinearLayout>

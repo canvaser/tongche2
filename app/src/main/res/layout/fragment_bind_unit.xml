@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/normal_title" />
+
+    <LinearLayout
+        android:id="@+id/userCenter_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+        <com.siwei.tongche.views.RoundImageView
+            android:id="@+id/userCenter_headerImg"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/default_header"
+            />
+        <TextView
+            android:text="姓名"
+            android:id="@+id/userCenter_userName"
+            style="@style/TextView_normal_black"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="15dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="手机号:"
+            style="@style/TextView_normal_black"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="50dp"
+            />
+        <TextView
+            android:paddingLeft="5dp"
+            android:text="12345678911"
+            style="@style/TextView_normal_black"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+    </LinearLayout>
+<View
+    style="@style/horizontal_Line"
+    />
+    <LinearLayout
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="15dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="50dp"
+            android:text="单位:"
+            style="@style/TextView_normal_black"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            />
+        <TextView
+            android:paddingLeft="5dp"
+            android:text="12345678911"
+            style="@style/TextView_normal_black"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+    </LinearLayout>
+
+
+        <Button
+            android:layout_marginTop="10dp"
+            style="@style/Style_Btn_normal"
+            android:text="绑定单位/发货单位"/>
+    </LinearLayout>
+</LinearLayout>

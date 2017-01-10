@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:background="@color/bg_gray"
+    >
+    <include layout="@layout/normal_title"/>
+
+    <com.siwei.tongche.views.ClearEditText
+        android:id="@+id/feedBack_content"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:maxLength="256"
+        android:background="@color/white"
+        android:padding="10dp"
+        android:textSize="@dimen/textsize_normal"
+        android:hint="请输入您宝贵的意见或建议"
+        android:gravity="top"
+        android:textColorHint="@color/text_gray"/>
+
+    <LinearLayout
+        style="@style/Style_normal_item_layout"
+       android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp">
+        <TextView
+            style="@style/TextView_normal_black"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:text="软件评价"/>
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:stepSize="1"
+            android:id="@+id/feedBack_RatingBar"
+            style="@style/MyRatingBar"
+            android:rating="5"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="20dp"
+        android:paddingTop="10dp"
+        android:background="@color/white"
+       >
+        <TextView
+            style="@style/TextView_normal_black"
+            android:text="添加照片"/>
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/accident_add_pic"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"/>
+    </LinearLayout>
+        <Button
+            style="@style/Style_Btn_normal"
+            android:text="发送"
+            android:id="@+id/btn_feedBack"
+            android:imeOptions="actionSend"
+            android:inputType="text"/>
+
+
+</LinearLayout>

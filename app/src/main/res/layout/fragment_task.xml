@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/top_color"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="#9ACE48"
+            android:id="@+id/task_top_ing">
+
+            <TextView
+                android:id="@+id/task_ing_count"
+                style="@style/TextView_large_white"
+                android:textStyle="bold"
+                android:text="25"
+                android:textSize="20sp"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@drawable/icon_task_ing"/>
+
+            <TextView
+                android:id="@+id/task_ing_done"
+                style="@style/TextView_small_white"
+                android:text="1500m/150车"
+                android:layout_marginTop="5dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="#B89BC9"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/task_top_new">
+
+            <TextView
+                android:id="@+id/task_new_count"
+                style="@style/TextView_large_white"
+                android:textStyle="bold"
+                android:text="25"
+                android:textSize="20sp"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@drawable/icon_task_new"/>
+
+            <TextView
+                android:id="@+id/task_new_done"
+                style="@style/TextView_small_white"
+                android:text="1500m/150车"
+                android:layout_marginTop="5dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="#D9E021"
+            android:id="@+id/task_top_finished">
+
+            <TextView
+                android:id="@+id/task_finished_count"
+                style="@style/TextView_large_white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="25"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@drawable/icon_task_finished"/>
+
+            <TextView
+                android:id="@+id/task_finished_done"
+                style="@style/TextView_small_white"
+                android:text="1500m/150车"
+                android:layout_marginTop="5dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <include layout="@layout/layout_refresh_listview"/>
+
+</LinearLayout>

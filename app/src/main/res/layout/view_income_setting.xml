@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/incomeSetting_layout">
+
+    <LinearLayout
+        style="@style/Style_normal_item_layout"
+        >
+        <TextView
+            style="@style/TextView_normal_black"
+            android:text="单价"/>
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:gravity="right"
+            style="@style/TextView_normal_black"
+            android:id="@+id/addIncomeItem"
+            android:text="添加"
+            android:textColor="@color/text_blue"/>
+    </LinearLayout>
+    <View style="@style/horizontal_Line"></View>
+</LinearLayout>

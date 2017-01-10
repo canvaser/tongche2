@@ -1,0 +1,186 @@
+<resources>
+    <!-- TextView 样式 -->
+    <style name="TextView_normal_white">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textSize">@dimen/textsize_normal</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="TextView_large_black">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_black</item>
+        <item name="android:textSize">@dimen/textsize_large</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="TextView_large_white">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textSize">@dimen/textsize_large</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="TextView_normal_black">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_black</item>
+        <item name="android:textSize">@dimen/textsize_normal</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="TextView_normal_gray">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_gray</item>
+        <item name="android:textSize">@dimen/textsize_normal</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="TextView_small_gray">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_gray</item>
+        <item name="android:textSize">@dimen/textsize_small</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+
+    <style name="TextView_small_black">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_black</item>
+        <item name="android:textSize">@dimen/textsize_small</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="TextView_small_white">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textSize">@dimen/textsize_small</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="edittext_normal">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/text_black</item>
+        <item name="android:textSize">@dimen/textsize_normal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <!-- TextView 样式 -->
+
+
+    <!-- 横线 -->
+    <style name="horizontal_Line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.8dp</item>
+        <item name="android:background">@color/bg_gray</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <!-- 竖线 -->
+    <style name="vertical_Line">
+        <item name="android:layout_width">0.8dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/bg_gray</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <!-- 每一项 -->
+    <style name="Style_normal_item_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:background">@drawable/selector_pressed_bg</item>
+    </style>
+
+
+    <!-- 每一项 -->
+    <style name="Style_Edittext_pwd">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:inputType">textPassword</item>
+        <item name="android:digits">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+        </item>
+        <item name="android:maxLength">16</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:textSize">@dimen/textsize_normal</item>
+        <item name="android:textColor">@color/text_black</item>
+        <item name="android:hint">"密码(6-16位数字和字母)"</item>
+    </style>
+
+    <style name="Style_Edittext_normal">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:maxLength">16</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:textSize">@dimen/textsize_normal</item>
+        <item name="android:textColor">@color/text_black</item>
+    </style>
+
+    <!-- 按钮 -->
+    <style name="Style_Btn_normal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/corner_blue_blue</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/textsize_normal</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:layout_margin">15dp</item>
+    </style>
+
+    <!--切换按钮-->
+    <style name="SwitchButtonStyle">
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+    </style>
+
+    <!--星级评论条-->
+    <style name="MyRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/my_rating_bar</item>
+        <item name="android:minHeight">30dp</item>
+        <item name="android:maxHeight">30dp</item>
+    </style>
+
+
+    <!--小票签收方量-->
+    <style name="num_large_blue">
+        <item name="android:textColor">@color/text_blue</item>
+        <item name="android:textSize">@dimen/textsize_large</item>
+    </style>
+
+    <style name="num_normal_blue">
+        <item name="android:textColor">@color/text_blue</item>
+        <item name="android:textSize">@dimen/textsize_normal</item>
+    </style>
+
+    <style name="num_normal_red">
+        <item name="android:textColor">@color/text_red</item>
+        <item name="android:textSize">@dimen/textsize_normal</item>
+    </style>
+
+    <style name="num_normal_black">
+        <item name="android:textColor">@color/text_black</item>
+        <item name="android:textSize">@dimen/textsize_normal</item>
+    </style>
+
+
+
+</resources>

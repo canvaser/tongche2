@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent"
+    android:id="@+id/ll_root">
+
+
+    <LinearLayout
+        android:id="@+id/userCenter_top"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/selector_pressed_bg"
+        android:orientation="horizontal">
+        <com.siwei.tongche.views.RoundImageView
+            android:src="@drawable/default_header"
+            android:id="@+id/userCenter_headerImg"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="10dp"
+            android:scaleType="fitXY"
+            />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/userCenter_userName"
+                style="@style/TextView_normal_black"
+                />
+
+            <TextView
+                android:id="@+id/userCenter_phone"
+                style="@style/TextView_normal_black"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+
+            <TextView
+                android:id="@+id/userCenter_company"
+                style="@style/TextView_normal_black"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        style="@style/Style_normal_item_layout"
+        >
+        <TextView
+            android:text="管理员"
+            style="@style/TextView_large_black"
+            android:layout_weight="1"
+            />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/selector_check_box"/>
+    </LinearLayout>
+
+    <Button
+        style="@style/Style_Btn_normal"
+        android:text="添加用户"/>
+</LinearLayout>
