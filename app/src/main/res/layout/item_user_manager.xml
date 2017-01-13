@@ -27,6 +27,7 @@
             android:background="@drawable/corner_white_white"
             android:gravity="center_vertical">
             <ImageView
+                android:id="@+id/tv_head"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@drawable/default_header"
@@ -52,13 +53,14 @@
                     android:id="@+id/user_type"
                     android:layout_marginRight="10dp"/>
 
+                    <TextView
+                        style="@style/TextView_normal_black"
+                        android:text="13569856325"
+                        android:id="@+id/user_mobile"
+                         />
+                </LinearLayout>
                 <TextView
-                    style="@style/TextView_normal_black"
-                    android:text="13569856325"
-                    android:id="@+id/user_mobile"
-                     />
-            </LinearLayout>
-                <TextView
+                    android:id="@+id/tv_shr"
                     style="@style/TextView_small_gray"
                     android:layout_width="match_parent"
                     android:layout_marginTop="10dp"

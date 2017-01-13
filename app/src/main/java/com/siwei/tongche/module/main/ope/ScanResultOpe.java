@@ -29,7 +29,9 @@ public class ScanResultOpe implements Serializable{
         Fragment fragment = null;
         UserInfo scaninfo = CacheUtils.getLocalUserInfo();
         UserInfo myInfo = CacheUtils.getLocalUserInfo();
-
+        myInfo.setURoleCode(AppConstants.USER_TYPE.TYPE_DRIVER);
+        scaninfo.setURoleCode(AppConstants.USER_TYPE.TYPE_RENT_UNIT);
+        scaninfo.setUUnitRole(AppConstants.USER_UNIT_ROLE.ROLE_MANAGER);
         /**驾驶员*/
 
         //7.1.1.1当驾驶员扫描租赁单位管理员二维码，页面出现管理员信息与【绑定单位】按钮，驾驶员点击【绑定单位】，租赁单位管理员即收到员工消息，点击【接受】即可。

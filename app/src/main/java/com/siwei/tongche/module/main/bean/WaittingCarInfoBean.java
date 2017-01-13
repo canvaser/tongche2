@@ -101,4 +101,5 @@ public class WaittingCarInfoBean extends BaseBean {
     public void setVGoBackTime(String VGoBackTime) {
         this.VGoBackTime = VGoBackTime;
     }
+
 }

@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -15,7 +16,10 @@ import com.daimajia.swipe.SwipeLayout;
 import com.loopj.android.http.RequestParams;
 import com.ramotion.foldingcell.FoldingCell;
 import com.siwei.tongche.R;
+import com.siwei.tongche.common.AppConstants;
 import com.siwei.tongche.common.MyBaseAdapter;
+import com.siwei.tongche.common.MySwipeBaseAdapter;
+import com.siwei.tongche.common.MySwipeViewHolder;
 import com.siwei.tongche.common.MyViewHolder;
 import com.siwei.tongche.http.MyHttpUtil;
 import com.siwei.tongche.http.MyUrls;
@@ -28,6 +32,7 @@ import com.siwei.tongche.utils.MyFormatUtils;
 import com.siwei.tongche.utils.MyLogUtils;
 import com.siwei.tongche.utils.MyRegexpUtils;
 import com.siwei.tongche.utils.MyToastUtils;
+import com.siwei.tongche.utils.TimeUtils;
 import com.siwei.tongche.views.CircleBar;
 
 import java.util.ArrayList;
@@ -59,26 +64,32 @@ public class TaskFragment extends Fragment {
     @Bind(R.id.loadMore)
     LoadMoreListViewContainer loadMore;
 
-
+    @Bind(R.id.task_top_ing)
+    LinearLayout mLayout_ing;
     @Bind(R.id.task_ing_count)
     TextView mTask_ing_count;//进行中任务 总数量
     @Bind(R.id.task_ing_done)
     TextView mTask_ing_done;//进行中任务 完成方量 车数
 
+    @Bind(R.id.task_top_new)
+    LinearLayout mLayout_new;
     @Bind(R.id.task_new_count)
     TextView mTask_new_count;//新任务 总数量
     @Bind(R.id.task_new_done)
     TextView mTask_new_done;//新任务完成方量 车数
 
+    @Bind(R.id.task_top_finished)
+    LinearLayout mLayout_finished;
     @Bind(R.id.task_finished_count)
     TextView mTask_finished_count;//已完成任务 总数量
     @Bind(R.id.task_finished_done)
     TextView mTask_finished_done;//已完成任务完成方量 车数
 
     UserInfo mUserInfo;
-    MyBaseAdapter<TaskInfoBean> mTaskAdapter;
+    MySwipeBaseAdapter<TaskInfoBean> mTaskAdapter;
     ArrayList<TaskInfoBean>  mTaskDatas=new ArrayList<>();
 
+    private int mTaskType=0;//0进行 1新任务 2完成
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -100,7 +111,8 @@ public class TaskFragment extends Fragment {
 
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
-                loadData(false);
+                getTitleData();
+                setEnable(mTaskType);
             }
         });
 
@@ -120,10 +132,14 @@ public class TaskFragment extends Fragment {
             }
         }, 100);
 
-        mTaskAdapter=new MyBaseAdapter<TaskInfoBean>(mTaskDatas,getActivity()) {
+        mTaskAdapter=new MySwipeBaseAdapter<TaskInfoBean>(mTaskDatas,getActivity(),R.layout.item_cell_task) {
             @Override
-            public View getItemView(int position, View convertView, ViewGroup parent, TaskInfoBean model) {
-                MyViewHolder viewHolder=MyViewHolder.getViewHolder(getActivity(),convertView,parent,R.layout.item_cell_task,position);
+            public int getSwipeLayoutResourceId(int position) {
+                return R.id.layout_task_title;
+            }
+            @Override
+            public void fillValues(int position, View convertView, TaskInfoBean model) {
+                MySwipeViewHolder viewHolder=MySwipeViewHolder.getMySwipeViewHolder(convertView);
 
                 initTaskView(viewHolder,position,model);
 
@@ -152,14 +168,13 @@ public class TaskFragment extends Fragment {
                         MyToastUtils.showToast("打电话");
                     }
                 });
-                viewHolder.getView(R.id.swipeOpe).setOnClickListener(new View.OnClickListener() {
+                viewHolder.getView(R.id.swipe_express_list).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         startActivity(new Intent(getActivity(),ExpressListActivity.class));
                     }
                 });
 
-                return viewHolder.getConvertView();
             }
 
             /**
@@ -168,7 +183,7 @@ public class TaskFragment extends Fragment {
              * @param position
              * @param model
              */
-            private void initTaskView(MyViewHolder viewHolder, int position, TaskInfoBean model) {
+            private void initTaskView(MySwipeViewHolder viewHolder, int position, TaskInfoBean model) {
                 //完成比例
                 int progress= (int) ((MyFormatUtils.toDouble(model.getLjNum())/MyFormatUtils.toDouble(model.getPlanNum()))*100);
                 CircleBar circleBar=viewHolder.getView(R.id.task_progress);
@@ -183,7 +198,7 @@ public class TaskFragment extends Fragment {
                 viewHolder.setText(R.id.task_title_unit,model.getSendUnitName()+"→"+model.getReceiveUnitName());//发货单位 收货单位
                 viewHolder.setText(R.id.task_title_castingPlace,model.getJzbw());//浇筑部位
                 viewHolder.setText(R.id.task_title_express,model.getCompleteCs()+"/"+model.getSendCs());//已有小票20  签收15车
-                viewHolder.setText(R.id.task_title_progressTime,getTimeWaitting(model.getPlanDate()));//任务执行时间
+                viewHolder.setText(R.id.task_title_progressTime,TimeUtils.getTimeWaitting(model.getPlanDate()));//任务执行时间
                 viewHolder.setText(R.id.task_title_finishedVolume,model.getLjNum()+"m³");//完成方量
                 viewHolder.setText(R.id.task_title_planVolume,model.getPlanNum());//计划方量
 
@@ -197,7 +212,7 @@ public class TaskFragment extends Fragment {
                 viewHolder.setText(R.id.task_detail_unit,model.getSendUnitName()+"→"+model.getReceiveUnitName());//发货单位 收货单位
                 viewHolder.setText(R.id.task_detail_castingPlace,model.getJzbw());//浇筑部位
                 viewHolder.setText(R.id.task_detail_express,model.getCompleteCs()+"/"+model.getSendCs());//已有小票20  签收15车
-                viewHolder.setText(R.id.task_detail_progressTime,getTimeWaitting(model.getPlanDate()));//任务执行时间
+                viewHolder.setText(R.id.task_detail_progressTime, TimeUtils.getTimeWaitting(model.getPlanDate()));//任务执行时间
                 viewHolder.setText(R.id.task_detail_projectName,model.getProName());//工程名称
                 viewHolder.setText(R.id.task_detail_linkMan,model.getTaskLinkMan());//联系人
                 viewHolder.setText(R.id.task_detail_contractNo,"合同："+model.getContractNo());//合同编号
@@ -211,32 +226,21 @@ public class TaskFragment extends Fragment {
                     viewHolder.getView(R.id.task_detail_remarks).setVisibility(View.VISIBLE);
                     viewHolder.setText(R.id.task_detail_remarks,model.getMemo());
                 }
-            }
 
-
-            /**
-             * 计算时间间隔
-             * @param startTime
-             * @return
-             */
-            private String getTimeWaitting(String startTime){
-                long startTimeSec= MyFormatUtils.toLong(startTime);
-                long currentTimeSec=System.currentTimeMillis()/1000;
-                long waittingSec=currentTimeSec-startTimeSec;
-                if(waittingSec<60){//1分钟以下
-                    return waittingSec+"";
-                }else if(waittingSec<60*60&&waittingSec>=60){//一分钟以上 一小时以下
-                    return waittingSec/60+":"+waittingSec%60;
-                }else if(waittingSec>=3600){
-                    return waittingSec/3600+":"+(waittingSec%3600)/60+":"+(waittingSec%3600)%60 ;
+                if(mTaskType==1){//新任务
+                    viewHolder.getView(R.id.swipe_express_list).setVisibility(View.GONE);
+                    viewHolder.getView(R.id.layout_newTask).setVisibility(View.VISIBLE);
+                }else{
+                    viewHolder.getView(R.id.swipe_express_list).setVisibility(View.VISIBLE);
+                    viewHolder.getView(R.id.layout_newTask).setVisibility(View.GONE);
                 }
-                return null;
             }
+
+
+
         };
 
         mList_task.setAdapter(mTaskAdapter);
-        
-        getTitleData();
     }
 
     /**
@@ -285,7 +289,9 @@ public class TaskFragment extends Fragment {
 //        UserID，TaskType(任务类型)
         RequestParams params=new RequestParams();
         params.put("UserID",mUserInfo.getUID());
-        params.put("TaskType",1);
+        params.put("TaskType",mTaskType);
+        params.put("pageSize", AppConstants.LIST_PAGE_SIZE);
+        params.put("pageIndex",pageIndex);
         MyHttpUtil.sendGetRequest(getContext(), MyUrls.TASK_LIST, params, MyHttpUtil.ReturnType.ARRAY, TaskInfoBean.class, "", new MyHttpUtil.HttpResult() {
 
             @Override
@@ -319,11 +325,33 @@ public class TaskFragment extends Fragment {
     public void onClick(View view){
         switch (view.getId()){
             case R.id.task_top_ing://进行中
+                setEnable(0);
                 break;
             case R.id.task_top_new://新任务
+                setEnable(1);
                 break;
             case R.id.task_top_finished://已完成
+                setEnable(2);
                 break;
         }
+    }
+
+    private void setEnable(int index){
+        mTaskType=index;
+        mLayout_ing.setEnabled(true);
+        mLayout_new.setEnabled(true);
+        mLayout_finished.setEnabled(true);
+        switch (index){
+            case 0:
+                mLayout_ing.setEnabled(false);
+                break;
+            case 1:
+                mLayout_new.setEnabled(false);
+                break;
+            case 2:
+                mLayout_finished.setEnabled(false);
+                break;
+        }
+        loadData(false);
     }
 }

@@ -46,11 +46,14 @@ public abstract class BaseActivity extends AppCompatActivity implements SDEvent 
 
 	protected View rootView;
 
+	protected FragmentActivity activity;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{	
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
+		activity =this;
 		rootView = LayoutInflater.from(this).inflate(getContentView(),null);
 		setContentView(rootView);
 		ButterKnife.bind(this);

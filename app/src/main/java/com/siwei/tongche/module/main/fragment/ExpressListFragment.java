@@ -31,6 +31,8 @@ import com.siwei.tongche.baidumap.BaiduMapUtilsManager;
 import com.siwei.tongche.common.AppConstants;
 import com.siwei.tongche.common.BaseBean;
 import com.siwei.tongche.common.MyBaseAdapter;
+import com.siwei.tongche.common.MySwipeBaseAdapter;
+import com.siwei.tongche.common.MySwipeViewHolder;
 import com.siwei.tongche.common.MyViewHolder;
 import com.siwei.tongche.dialog.SignExpressDialog;
 import com.siwei.tongche.http.MyHttpUtil;
@@ -51,6 +53,7 @@ import com.siwei.tongche.utils.MyFormatUtils;
 import com.siwei.tongche.utils.MyLogUtils;
 import com.siwei.tongche.utils.MyRegexpUtils;
 import com.siwei.tongche.utils.MyToastUtils;
+import com.siwei.tongche.utils.TimeUtils;
 import com.siwei.tongche.views.timeline.view.TimeLineView;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
@@ -73,6 +76,7 @@ import in.srain.cube.views.loadmore.LoadMoreListViewContainer;
  */
 
 public class ExpressListFragment extends Fragment {
+    private final static int TAG_STATUS=R.id.express_swipe;
     @Bind(R.id.loadMore)
     LoadMoreListViewContainer loadMore;
 
@@ -86,7 +90,7 @@ public class ExpressListFragment extends Fragment {
     BaiduMapUtilsManager mBaiduMapUtilsManager;
 
     ArrayList<ExpressInfoBean> mDatas=new ArrayList<>();
-    MyBaseAdapter<ExpressInfoBean> mExpressAdapter;
+    MySwipeBaseAdapter<ExpressInfoBean> mExpressAdapter;
     UserInfo mUserInfo=CacheUtils.getLocalUserInfo();
     @Nullable
     @Override
@@ -159,6 +163,9 @@ public class ExpressListFragment extends Fragment {
             @Override
             public void onResult(Object object) {
                 try {
+                    if(object==null){
+                        return;
+                    }
                     JSONObject data=JSONObject.parseObject(object.toString());
                     String status=data.getString("status");
                     if(status.equals("1000")){
@@ -168,10 +175,10 @@ public class ExpressListFragment extends Fragment {
                         int taskStauts= resultData.getIntValue("taskStauts");
                         if(taskStauts==1||taskStauts==2) {
                             JSONArray mixingstation = resultData.getJSONArray("mixingstation");
-                            ArrayList<MapMixingstation> mixingstationList = (ArrayList<MapMixingstation>) JSONArray.parseArray(mixingstation.toJSONString(), MapMixingstation.class);
+                            final ArrayList<MapMixingstation> mixingstationList = (ArrayList<MapMixingstation>) JSONArray.parseArray(mixingstation.toJSONString(), MapMixingstation.class);
 
                             JSONArray project = resultData.getJSONArray("project");
-                            ArrayList<MapProject> projectList = (ArrayList<MapProject>) JSONArray.parseArray(project.toJSONString(), MapProject.class);
+                            final ArrayList<MapProject> projectList = (ArrayList<MapProject>) JSONArray.parseArray(project.toJSONString(), MapProject.class);
 
 //                        JSONArray  vehiclePosition=resultData.getJSONArray("VehiclePosition");
 //                        ArrayList<MapVehiclePosition>  VehiclePositionList= (ArrayList<MapVehiclePosition>) JSONArray.parseArray(vehiclePosition.toJSONString(), MapVehiclePosition.class);
@@ -202,17 +209,23 @@ public class ExpressListFragment extends Fragment {
                             mBaiduMapUtilsManager.setMultipleMarkerClicker(new BaiduMapUtilsManager.OnMultipleMarkerClick() {
                                 @Override
                                 public void onMyMarkerClick(int dataType, int index) {
+                                    Intent intent=new Intent(getActivity(),MapDetailInfoActivity.class);
                                     switch (dataType) {
                                         case BaiduMapUtilsManager.MAP_TYPE_CAR://车辆
                                             MyToastUtils.showToast("车辆==" + index);
                                             break;
                                         case BaiduMapUtilsManager.MAP_TYPE_PROJECT://工程
                                             MyToastUtils.showToast("工程==" + index);
+                                            intent.putExtra(MapDetailInfoActivity.MAP_TYPE,MapDetailInfoActivity.MAP_PROJECT);
+                                            intent.putExtra(MapDetailInfoActivity.MAP_DATA,projectList.get(index));
                                             break;
                                         case BaiduMapUtilsManager.MAP_TYPE_MIXINGSTATION://搅拌站
                                             MyToastUtils.showToast("搅拌站==" + index);
+                                            intent.putExtra(MapDetailInfoActivity.MAP_TYPE,MapDetailInfoActivity.MAP_MIXING_STATION);
+                                            intent.putExtra(MapDetailInfoActivity.MAP_DATA,mixingstationList.get(index));
                                             break;
                                     }
+                                    getActivity().startActivity(intent);
 
                                 }
                             });
@@ -342,7 +355,7 @@ public class ExpressListFragment extends Fragment {
         ((TextView)mHeaderView.findViewById(R.id.waitting_car_brand)).setText(waittingCarInfoBean.getVBrand());//车品牌
         ((TextView)mHeaderView.findViewById(R.id.waitting_car_size)).setText(waittingCarInfoBean.getVGgxh());//车大小
         ((TextView)mHeaderView.findViewById(R.id.waitting_unit_name)).setText(waittingCarInfoBean.getUnitName());//单位名称
-        ((TextView)mHeaderView.findViewById(R.id.wait_time)).setText("已等待："+getTimeWaitting(waittingCarInfoBean.getVGoBackTime()));
+        ((TextView)mHeaderView.findViewById(R.id.wait_time)).setText("已等待："+TimeUtils.getTimeWaitting(waittingCarInfoBean.getVGoBackTime()));
         mExpressList.addHeaderView(mHeaderView);
         //开启定时器
         startTimer(waittingCarInfoBean.getVGoBackTime(),((TextView)mHeaderView.findViewById(R.id.wait_time)));
@@ -366,41 +379,27 @@ public class ExpressListFragment extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        tvWaittingTime.setText("已等待："+getTimeWaitting(startTime));
+                        tvWaittingTime.setText("已等待："+ TimeUtils.getTimeWaitting(startTime));
                     }
                 });
             }
         },1000,1000);
     }
 
-    /**
-     * 计算时间间隔
-     * @param startTime
-     * @return
-     */
-    private String getTimeWaitting(String startTime){
-        long startTimeSec= MyFormatUtils.toLong(startTime);
-        long currentTimeSec=System.currentTimeMillis()/1000;
-        long waittingSec=currentTimeSec-startTimeSec;
-        if(waittingSec<60){//1分钟以下
-            return waittingSec+"";
-        }else if(waittingSec<60*60&&waittingSec>=60){//一分钟以上 一小时以下
-            return waittingSec/60+":"+waittingSec%60;
-        }else if(waittingSec>=3600){
-            return waittingSec/3600+":"+(waittingSec%3600)/60+":"+(waittingSec%3600)%60 ;
-        }
-        return null;
-    }
-
     private void addAdapter() {
-        mExpressAdapter=new MyBaseAdapter<ExpressInfoBean>(mDatas,getContext()) {
+        mExpressAdapter=new MySwipeBaseAdapter<ExpressInfoBean>(mDatas,getContext(),R.layout.item_cell_express) {
             @Override
-            public View getItemView(int position, View convertView, ViewGroup parent, final ExpressInfoBean model) {
-                MyViewHolder viewHolder=MyViewHolder.getViewHolder(getContext(),convertView,parent,R.layout.item_cell_express,position);
+            public int getSwipeLayoutResourceId(int position) {
+                return R.id.layout_express_title;
+            }
+
+            @Override
+            public void fillValues(int position, View convertView, final ExpressInfoBean model) {
+                MySwipeViewHolder viewHolder= MySwipeViewHolder.getMySwipeViewHolder( convertView );
 
                 initItem(viewHolder,position,model);
                 //初始化侧滑栏
-                initSwipeMenu((SwipeLayout) viewHolder.getView(R.id.layout_express_title),model);
+                initSwipeMenu((SwipeLayout) viewHolder.getView(R.id.layout_express_title),model,position);
 
                 final FoldingCell foldingCell=viewHolder.getView(R.id.item_express);
                 viewHolder.getView(R.id.swipe_content).setOnClickListener(new View.OnClickListener() {
@@ -452,7 +451,6 @@ public class ExpressListFragment extends Fragment {
                     }
                 });
 
-                return viewHolder.getConvertView();
             }
 
             /**
@@ -460,17 +458,20 @@ public class ExpressListFragment extends Fragment {
              * @param swipeLayout
              * @param expressInfoBean
              */
-            private void initSwipeMenu(SwipeLayout swipeLayout, ExpressInfoBean expressInfoBean) {
+            private void initSwipeMenu(SwipeLayout swipeLayout, final ExpressInfoBean expressInfoBean, final int position) {
                 Button swipe_menu= (Button) swipeLayout.findViewById(R.id.swipe_menu);
+                swipeLayout.close();//默认关闭
                 swipeLayout.setSwipeEnabled(false);//默认都不能打开侧滑栏
                 switch (expressInfoBean.getPTRuleCode()){
                     case "1"://全自动签收
                         if(mUserInfo.getURoleCode().equals(AppConstants.USER_TYPE.TYPE_DRIVER)){//驾驶员
                             if(expressInfoBean.getTQProgress().equals("4")){//签收
                                 swipe_menu.setText("离开");
+                                swipe_menu.setTag(TAG_STATUS,"3");
                                 swipeLayout.setSwipeEnabled(true);
                             }else if(expressInfoBean.getTQProgress().equals("3")){//离开
                                 swipe_menu.setText("回厂");
+                                swipe_menu.setTag(TAG_STATUS,"5");
                                 swipeLayout.setSwipeEnabled(true);
                             }
                         }else{
@@ -480,12 +481,15 @@ public class ExpressListFragment extends Fragment {
                     case "2"://驾驶员确认到达-系统签收
                         if(mUserInfo.getURoleCode().equals(AppConstants.USER_TYPE.TYPE_DRIVER)){//驾驶员
                             if(expressInfoBean.getTQProgress().equals("0")){//出发
+                                swipe_menu.setTag(TAG_STATUS,"1");
                                 swipe_menu.setText("到达");
                                 swipeLayout.setSwipeEnabled(true);
                             }else if(expressInfoBean.getTQProgress().equals("4")){//签收
+                                swipe_menu.setTag(TAG_STATUS,"3");
                                 swipe_menu.setText("离开");
                                 swipeLayout.setSwipeEnabled(true);
                             }else if(expressInfoBean.getTQProgress().equals("3")){//离开
+                                swipe_menu.setTag(TAG_STATUS,"5");
                                 swipe_menu.setText("回厂");
                                 swipeLayout.setSwipeEnabled(true);
                             }
@@ -496,15 +500,19 @@ public class ExpressListFragment extends Fragment {
                     case "3"://驾驶员确认到达-驾驶员确认签收
                         if(mUserInfo.getURoleCode().equals(AppConstants.USER_TYPE.TYPE_DRIVER)){//驾驶员
                             if(expressInfoBean.getTQProgress().equals("0")){//出发
+                                swipe_menu.setTag(TAG_STATUS,"1");
                                 swipe_menu.setText("到达");
                                 swipeLayout.setSwipeEnabled(true);
                             }if(expressInfoBean.getTQProgress().equals("1")){//到达  签收
+                                swipe_menu.setTag(TAG_STATUS,"4");
                                 swipe_menu.setText("签收");
                                 swipeLayout.setSwipeEnabled(true);
                             }else if(expressInfoBean.getTQProgress().equals("4")){//签收
+                                swipe_menu.setTag(TAG_STATUS,"3");
                                 swipe_menu.setText("离开");
                                 swipeLayout.setSwipeEnabled(true);
                             }else if(expressInfoBean.getTQProgress().equals("3")){//离开
+                                swipe_menu.setTag(TAG_STATUS,"5");
                                 swipe_menu.setText("回厂");
                                 swipeLayout.setSwipeEnabled(true);
                             }
@@ -515,17 +523,21 @@ public class ExpressListFragment extends Fragment {
                     case "4":// 驾驶员确认到达-签收员确认签收
                         if(mUserInfo.getURoleCode().equals(AppConstants.USER_TYPE.TYPE_DRIVER)){//驾驶员
                             if(expressInfoBean.getTQProgress().equals("0")){//出发
+                                swipe_menu.setTag(TAG_STATUS,"1");
                                 swipe_menu.setText("到达");
                                 swipeLayout.setSwipeEnabled(true);
                             }else if(expressInfoBean.getTQProgress().equals("4")){//签收
+                                swipe_menu.setTag(TAG_STATUS,"3");
                                 swipe_menu.setText("离开");
                                 swipeLayout.setSwipeEnabled(true);
                             }else if(expressInfoBean.getTQProgress().equals("3")){//离开
+                                swipe_menu.setTag(TAG_STATUS,"5");
                                 swipe_menu.setText("回厂");
                                 swipeLayout.setSwipeEnabled(true);
                             }
                         }else{
                             if(expressInfoBean.getTQProgress().equals("1")){//到达  签收
+                                swipe_menu.setTag(TAG_STATUS,"4");
                                 swipe_menu.setText("签收");
                                 swipeLayout.setSwipeEnabled(true);
                             }
@@ -534,17 +546,21 @@ public class ExpressListFragment extends Fragment {
                     case "5"://签收员确认到达-签收员确认签收
                         if(mUserInfo.getURoleCode().equals(AppConstants.USER_TYPE.TYPE_DRIVER)){//驾驶员
                             if(expressInfoBean.getTQProgress().equals("4")){//签收
+                                swipe_menu.setTag(TAG_STATUS,"3");
                                 swipe_menu.setText("离开");
                                 swipeLayout.setSwipeEnabled(true);
                             }else if(expressInfoBean.getTQProgress().equals("3")){//离开
+                                swipe_menu.setTag(TAG_STATUS,"5");
                                 swipe_menu.setText("回厂");
                                 swipeLayout.setSwipeEnabled(true);
                             }
                         }else{
                             if(expressInfoBean.getTQProgress().equals("0")){//出发
+                                swipe_menu.setTag(TAG_STATUS,"1");
                                 swipe_menu.setText("到达");
                                 swipeLayout.setSwipeEnabled(true);
                             }else if(expressInfoBean.getTQProgress().equals("1")){//到达  签收
+                                swipe_menu.setTag(TAG_STATUS,"4");
                                 swipe_menu.setText("签收");
                                 swipeLayout.setSwipeEnabled(true);
                             }
@@ -553,14 +569,17 @@ public class ExpressListFragment extends Fragment {
                     case "6"://签收员确认到达-系统签收
                         if(mUserInfo.getURoleCode().equals(AppConstants.USER_TYPE.TYPE_DRIVER)){//驾驶员
                             if(expressInfoBean.getTQProgress().equals("4")){//签收
+                                swipe_menu.setTag(TAG_STATUS,"3");
                                 swipe_menu.setText("离开");
                                 swipeLayout.setSwipeEnabled(true);
                             }else if(expressInfoBean.getTQProgress().equals("3")){//离开
+                                swipe_menu.setTag(TAG_STATUS,"5");
                                 swipe_menu.setText("回厂");
                                 swipeLayout.setSwipeEnabled(true);
                             }
                         }else{
                             if(expressInfoBean.getTQProgress().equals("0")){//出发
+                                swipe_menu.setTag(TAG_STATUS,"1");
                                 swipe_menu.setText("到达");
                                 swipeLayout.setSwipeEnabled(true);
                             }
@@ -569,17 +588,21 @@ public class ExpressListFragment extends Fragment {
                     case "7"://签收员确认到达-驾驶员确认签收
                         if(mUserInfo.getURoleCode().equals(AppConstants.USER_TYPE.TYPE_DRIVER)){//驾驶员
                             if(expressInfoBean.getTQProgress().equals("1")){//到达  签收
+                                swipe_menu.setTag(TAG_STATUS,"4");
                                 swipe_menu.setText("签收");
                                 swipeLayout.setSwipeEnabled(true);
                             }else if(expressInfoBean.getTQProgress().equals("4")){//签收
+                                swipe_menu.setTag(TAG_STATUS,"3");
                                 swipe_menu.setText("离开");
                                 swipeLayout.setSwipeEnabled(true);
                             }else if(expressInfoBean.getTQProgress().equals("3")){//离开
+                                swipe_menu.setTag(TAG_STATUS,"5");
                                 swipe_menu.setText("回厂");
                                 swipeLayout.setSwipeEnabled(true);
                             }
                         }else{
                             if(expressInfoBean.getTQProgress().equals("0")){//出发
+                                swipe_menu.setTag(TAG_STATUS,"1");
                                 swipe_menu.setText("到达");
                                 swipeLayout.setSwipeEnabled(true);
                             }
@@ -588,12 +611,15 @@ public class ExpressListFragment extends Fragment {
                     case "8"://GPS到达-驾驶员确认签收
                         if(mUserInfo.getURoleCode().equals(AppConstants.USER_TYPE.TYPE_DRIVER)){//驾驶员
                             if(expressInfoBean.getTQProgress().equals("1")){//到达  签收
+                                swipe_menu.setTag(TAG_STATUS,"4");
                                 swipe_menu.setText("签收");
                                 swipeLayout.setSwipeEnabled(true);
                             }else if(expressInfoBean.getTQProgress().equals("4")){//签收
+                                swipe_menu.setTag(TAG_STATUS,"3");
                                 swipe_menu.setText("离开");
                                 swipeLayout.setSwipeEnabled(true);
                             }else if(expressInfoBean.getTQProgress().equals("3")){//离开
+                                swipe_menu.setTag(TAG_STATUS,"5");
                                 swipe_menu.setText("回厂");
                                 swipeLayout.setSwipeEnabled(true);
                             }
@@ -602,20 +628,32 @@ public class ExpressListFragment extends Fragment {
                     case "9"://GPS到达-签收员确认签收
                         if(mUserInfo.getURoleCode().equals(AppConstants.USER_TYPE.TYPE_DRIVER)){//驾驶员
                             if(expressInfoBean.getTQProgress().equals("4")){//签收
+                                swipe_menu.setTag(TAG_STATUS,"3");
                                 swipe_menu.setText("离开");
                                 swipeLayout.setSwipeEnabled(true);
                             }else if(expressInfoBean.getTQProgress().equals("3")){//离开
+                                swipe_menu.setTag(TAG_STATUS,"5");
                                 swipe_menu.setText("回厂");
                                 swipeLayout.setSwipeEnabled(true);
                             }
                         }else{
                             if(expressInfoBean.getTQProgress().equals("1")){//到达  签收
+                                swipe_menu.setTag(TAG_STATUS,"4");
                                 swipe_menu.setText("签收");
                                 swipeLayout.setSwipeEnabled(true);
                             }
                         }
                         break;
                 }
+
+                swipe_menu.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //侧滑按钮操作类型
+                        String opeStatus= (String) v.getTag(TAG_STATUS);
+                        changeExpressStatus(expressInfoBean.getTID(),opeStatus,position);
+                    }
+                });
 
             }
 
@@ -625,7 +663,7 @@ public class ExpressListFragment extends Fragment {
              * @param position
              * @param expressInfoBean
              */
-            private void initItem(MyViewHolder viewHolder, int position, ExpressInfoBean expressInfoBean) {
+            private void initItem(MySwipeViewHolder viewHolder, int position, ExpressInfoBean expressInfoBean) {
                 //title布局
                 if(expressInfoBean.getTQSStatus().equals("1")){//已签收
                     setNum(expressInfoBean.getTQSNum(),expressInfoBean.getTRemainNum(),expressInfoBean.getTYKNum(), (TextView) viewHolder.getView(R.id.express_title_num));//签收方量/剩余方量/盈亏量
@@ -707,4 +745,28 @@ public class ExpressListFragment extends Fragment {
         mExpressList.setAdapter(mExpressAdapter);
     }
 
+    /**
+     * 加载小票列表
+     *  UserID（用户id）、TicketId(小票id)、TStatus（小票进度状态）
+     */
+    private void changeExpressStatus(String TicketId,final String TStatus, final int position) {
+        JSONObject params = new JSONObject();
+        params.put("UID", CacheUtils.getLocalUserInfo().getUID());
+        params.put("TicketId", TicketId);
+        params.put("TStatus", TStatus);
+        MyHttpUtil.sendRequest(getActivity(), MyUrls.EXPRESS_STATUS_CHANGE, params, MyHttpUtil.ReturnType.BOOLEAN, null, "", new MyHttpUtil.HttpResult() {
+
+            @Override
+            public void onResult(Object object) {
+                try {
+                    if ((boolean) object) {
+                        //刷新数据
+                        mDatas.get(position).setTQProgress(TStatus);
+                        mExpressAdapter.notifyDataSetChanged();
+                    }
+                } catch (Exception e) {
+                }
+            }
+        });
+    }
 }

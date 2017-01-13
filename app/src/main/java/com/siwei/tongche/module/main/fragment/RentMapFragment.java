@@ -76,19 +76,19 @@ public class RentMapFragment extends Fragment {
                 toggleSelectLayout();
                 return;
             case R.id.layout_rent_workingCar://工作车辆
-                title="工作车辆";
+                title=MapCategoryActivity.CATEGORY_CAR_WORKING;
                 break;
             case R.id.layout_rent_freeCar://空闲车辆
-                title="空闲车辆";
+                title=MapCategoryActivity.CATEGORY_CAR_FREE;
                 break;
             case R.id.layout_rent_accidentCar://故障车辆
-                title="故障车辆";
+                title=MapCategoryActivity.CATEGORY_CAR_ACCIDENT;
                 break;
             case R.id.layout_rent_nearby://附近搅拌站
-                title="附近搅拌站";
+                title=MapCategoryActivity.CATEGORY_MIXING_STATION;
                 break;
         }
-        startActivity(new Intent(getContext(), MapCategoryActivity.class).putExtra("title",title));
+        startActivity(new Intent(getContext(), MapCategoryActivity.class).putExtra(MapCategoryActivity.CATEGORY_TYPE,title));
 //        toggleSelectLayout();
     }
 

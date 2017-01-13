@@ -180,6 +180,7 @@ public class CacheUtils {
 		edit.putString("UDriveNo", userInfo.getUDriveNo());
 		edit.putString("UHeadImg", userInfo.getUHeadImg());
 		edit.putString("UBindVehicleStatus",userInfo.getUBindVehicleStatus());
+		edit.putString("UBindSendUnitStatus",userInfo.getUBindSendUnitStatus());
 		edit.putString("UBindSendUnitAuditor",userInfo.getUBindSendUnitAuditor());
 		edit.putString("UBindSendUnitTime",userInfo.getUBindSendUnitTime());
 		edit.putString("UWorkStatus",userInfo.getUWorkStatus());
@@ -207,6 +208,7 @@ public class CacheUtils {
 		userInfo.setUDriveNo(getSavePrefString(MyApplication.getMyApplication(), "UDriveNo"));
 		userInfo.setUHeadImg(getSavePrefString(MyApplication.getMyApplication(), "UHeadImg"));
 		userInfo.setUBindVehicleStatus(getSavePrefString(MyApplication.getMyApplication(), "UBindVehicleStatus"));
+		userInfo.setUBindSendUnitStatus(getSavePrefString(MyApplication.getMyApplication(),"UBindSendUnitStatus"));
 		userInfo.setUBindSendUnitAuditor(getSavePrefString(MyApplication.getMyApplication(), "UBindSendUnitAuditor"));
 		userInfo.setUBindSendUnitTime(getSavePrefString(MyApplication.getMyApplication(), "UBindSendUnitTime"));
 		userInfo.setUWorkStatus(getSavePrefString(MyApplication.getMyApplication(), "UWorkStatus"));

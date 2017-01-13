@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.TextAppearanceSpan;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -17,6 +18,8 @@ import com.siwei.tongche.R;
 import com.siwei.tongche.common.AppConstants;
 import com.siwei.tongche.common.BaseActivity;
 import com.siwei.tongche.common.MyBaseAdapter;
+import com.siwei.tongche.common.MySwipeBaseAdapter;
+import com.siwei.tongche.common.MySwipeViewHolder;
 import com.siwei.tongche.common.MyViewHolder;
 import com.siwei.tongche.http.MyHttpUtil;
 import com.siwei.tongche.http.MyUrls;
@@ -27,6 +30,7 @@ import com.siwei.tongche.utils.CacheUtils;
 import com.siwei.tongche.utils.CallUtils;
 import com.siwei.tongche.utils.DensityUtil;
 import com.siwei.tongche.utils.MyFormatUtils;
+import com.siwei.tongche.utils.MyLogUtils;
 import com.siwei.tongche.utils.MyToastUtils;
 import com.siwei.tongche.views.timeline.view.TimeLineView;
 
@@ -53,7 +57,7 @@ public class ExpressListActivity extends BaseActivity {
     @Bind(R.id.loadMore)
     LoadMoreListViewContainer loadMore;
 
-    MyBaseAdapter<ExpressInfoBean> mExpressAdapter;
+    MySwipeBaseAdapter<ExpressInfoBean> mExpressAdapter;
     ArrayList<ExpressInfoBean>  mDatas=new ArrayList<ExpressInfoBean>();
 
     @Override
@@ -92,10 +96,13 @@ public class ExpressListActivity extends BaseActivity {
                 loadData(true);
             }
         });
-        mExpressAdapter=new MyBaseAdapter<ExpressInfoBean>(mDatas,this) {
+
+
+        mExpressAdapter=new MySwipeBaseAdapter<ExpressInfoBean>(mDatas,this,R.layout.item_cell_express) {
             @Override
-            public View getItemView(int position, View convertView, ViewGroup parent,final ExpressInfoBean model) {
-                MyViewHolder viewHolder=MyViewHolder.getViewHolder(ExpressListActivity.this,convertView,parent,R.layout.item_cell_express,position);
+            public void fillValues(int position, View convertView, final ExpressInfoBean model) {
+                MyLogUtils.e("fillValues=="+position);
+                MySwipeViewHolder viewHolder=MySwipeViewHolder.getMySwipeViewHolder(convertView);
                 final FoldingCell foldingCell=viewHolder.getView(R.id.item_express);
                 initItem(viewHolder,position,model);
                 viewHolder.getView(R.id.swipe_content).setOnClickListener(new View.OnClickListener() {
@@ -128,10 +135,13 @@ public class ExpressListActivity extends BaseActivity {
                 });
 
                 SwipeLayout swipeLayout=viewHolder.getView(R.id.layout_express_title);
-                swipeLayout.setDragDistance(DensityUtil.dip2px(50));
-//                swipeLayout.setSwipeEnabled(false);
+                swipeLayout.setSwipeEnabled(true);
 
-                return viewHolder.getConvertView();
+            }
+
+            @Override
+            public int getSwipeLayoutResourceId(int position) {
+                return R.id.layout_express_title;
             }
 
             /**
@@ -140,7 +150,7 @@ public class ExpressListActivity extends BaseActivity {
              * @param position
              * @param expressInfoBean
              */
-            private void initItem(MyViewHolder viewHolder, int position, ExpressInfoBean expressInfoBean) {
+            private void initItem(MySwipeViewHolder viewHolder, int position, ExpressInfoBean expressInfoBean) {
                 //title布局
                 if(expressInfoBean.getTQSStatus().equals("1")){//已签收
                     setNum(expressInfoBean.getTQSNum(),expressInfoBean.getTRemainNum(),expressInfoBean.getTYKNum(), (TextView) viewHolder.getView(R.id.express_title_num));//签收方量/剩余方量/盈亏量
@@ -259,6 +269,11 @@ public class ExpressListActivity extends BaseActivity {
                             mDatas.clear();
                         }
                         mDatas.addAll(datas);
+                        mDatas.addAll(mDatas);
+                        mDatas.addAll(mDatas);
+                        mDatas.addAll(mDatas);
+                        mDatas.addAll(mDatas);
+
                         mExpressAdapter.notifyDataSetChanged();
                         loadMore.loadMoreFinish(false, true);
                     }

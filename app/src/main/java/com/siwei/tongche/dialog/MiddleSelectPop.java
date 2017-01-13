@@ -74,7 +74,7 @@ public class MiddleSelectPop extends PopupWindow {
         dialog_listview.setAdapter(new MyBaseAdapter<String>(mDatas,mContext) {
             @Override
             public View getItemView(int position, View convertView, ViewGroup parent, String model) {
-                MyViewHolder myViewHolder=new MyViewHolder(mContext,parent,R.layout.item_select_menu,position);
+                MyViewHolder myViewHolder=MyViewHolder.getViewHolder(mContext,convertView,parent,R.layout.item_select_menu,position);
                 myViewHolder.setText(R.id.dialog_item_txt,model);
                 myViewHolder.getView(R.id.menu_item_icon).setVisibility(View.GONE);
                 return myViewHolder.getConvertView();

@@ -170,7 +170,7 @@ public class BindUserUnitActivity extends BaseActivity {
                         CacheUtils.setLocalUserInfo(userInfo);
                     }else{//发货单位
                         //0未绑定、1已绑定、2审核中、3绑定失败
-                        userInfo.setUBindUnitStatus("2");
+                        userInfo.setUBindSendUnitStatus("2");
                         CacheUtils.setLocalUserInfo(userInfo);
                     }
                     finish();

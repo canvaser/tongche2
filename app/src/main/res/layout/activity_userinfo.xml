@@ -5,5 +5,5 @@
     android:fitsSystemWindows="true"
     android:layout_height="match_parent"
     android:id="@+id/ll_root">
-    <include layout="@layout/normal_title" />
+
 </LinearLayout>

@@ -35,7 +35,7 @@ public class AccidentReportListActivity extends BaseActivity implements View.OnC
         mAccidentAdapter=new MyBaseAdapter<String>(null,this) {
             @Override
             public View getItemView(int position, View convertView, ViewGroup parent, String model) {
-                MyViewHolder viewHolder=new MyViewHolder(AccidentReportListActivity.this,parent,R.layout.item_accident_report,position);
+                MyViewHolder viewHolder=MyViewHolder.getViewHolder(AccidentReportListActivity.this,convertView,parent,R.layout.item_accident_report,position);
                 viewHolder.getView(R.id.iv_tomap).setOnClickListener(AccidentReportListActivity.this);
                 viewHolder.getView(R.id.iv_tomap).setTag(R.id.position,position);
                 return viewHolder.getConvertView();

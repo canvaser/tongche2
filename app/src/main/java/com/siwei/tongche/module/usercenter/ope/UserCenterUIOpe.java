@@ -181,7 +181,7 @@ public class UserCenterUIOpe extends BaseUIOpe{
         }
         for(int i=0;i<booleen.length;i++){
             if(!booleen[i]){
-                views[i].setVisibility(View.GONE);
+            //    views[i].setVisibility(View.GONE);
             }
         }
     }

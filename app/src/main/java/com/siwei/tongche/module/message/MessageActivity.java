@@ -20,6 +20,7 @@ import com.siwei.tongche.dialog.MiddleSelectPop;
 import com.siwei.tongche.http.MyHttpUtil;
 import com.siwei.tongche.http.MyUrls;
 import com.siwei.tongche.module.login.bean.UserInfo;
+import com.siwei.tongche.module.message.activity.TicketDetailActivity;
 import com.siwei.tongche.module.message.bean.MessageDetailBean;
 import com.siwei.tongche.module.message.ope.MessageDAOpe;
 import com.siwei.tongche.utils.CacheUtils;
@@ -86,18 +87,27 @@ public class MessageActivity extends BaseActivity {
 
             @Override
             public View getItemView(final int position, View convertView, ViewGroup parent, final MessageDetailBean model) {
-                MyViewHolder viewHolder=new MyViewHolder(MessageActivity.this,parent,R.layout.item_message,position);
+
+                MyViewHolder viewHolder = null;
+                //用户和任务有接受拒绝按钮
+                if(messageDAOpe.getMessageMenuBean().getList().get(position).getMType().equals("2")||
+                        messageDAOpe.getMessageMenuBean().getList().get(position).getMType().equals("3")){
+                    viewHolder=MyViewHolder.getViewHolder(MessageActivity.this,convertView,parent,R.layout.item_message,position);
+                }else{
+                    viewHolder=MyViewHolder.getViewHolder(MessageActivity.this,convertView,parent,R.layout.item_message_without,position);
+                }
                 viewHolder.setText(R.id.dialog_item_txt,model.getMContent()+"");
                 viewHolder.getView(R.id.ll_txt).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = null;
+                        //（消息类型 0 全部 消息类别小票1、车辆2、用户3、任务4、系统5、公告6）
                         switch (messageDAOpe.getMessageMenuBean().getList().get(position).getMType()){
                             case "0":
 
                                 break;
                             case "1":
-                                //intent = new Intent(MessageActivity.this,);
+                                intent = new Intent(MessageActivity.this, TicketDetailActivity.class);
                                 startActivity(intent);
                                 break;
                             case "2":
@@ -114,6 +124,11 @@ public class MessageActivity extends BaseActivity {
                                 break;
 
                         }
+
+
+
+                        intent = new Intent(MessageActivity.this, TicketDetailActivity.class);
+                        startActivity(intent);
                     }
                 });
                 //接受

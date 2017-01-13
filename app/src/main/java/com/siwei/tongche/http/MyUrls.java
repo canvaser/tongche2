@@ -24,6 +24,17 @@ public class MyUrls {
 	//获取驾驶员车辆信息
 	public static final String GET_DRIVER_VEHICLE_INFO=NAMESPACE+"TCPersonalSetting/GetDriverVehicleInfo";
 
+
+
+	//单位用户管理列表
+	public static final String GET_UNIT_VEHICLE_LIST=NAMESPACE+"TCUnit/GetUnitVehicleList";
+
+	//车辆管理列表
+	public static final String GET_UNIT_USER_LIST=NAMESPACE+"TCUnit/GetUnitUserList";
+
+	//驾驶员列表
+	public static final String GET_UNIT_DRIVER_LIST=NAMESPACE+"TCUnit/GetUnitDriverList";
+
 	//获取消息
 	public static final String GET_MESSAGE=NAMESPACE+"TCMessage/GetMessage";
 
@@ -63,6 +74,10 @@ public class MyUrls {
 	//----------------------小票-------------------------
 	//小票列表
 	public static final String EXPRESS_LIST=NAMESPACE+"TCDriverBusiness/GetTicketList";
+	//小票状态更改
+	public static final String EXPRESS_STATUS_CHANGE=NAMESPACE+"TCDriverBusiness/TicketSign";
+
+
 
 	//按车牌搜索车辆信息
 	public static final String GET_CARINFO_PLATE=NAMESPACE+"TCVehicle/GetVehicleByNo";

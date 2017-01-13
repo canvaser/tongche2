@@ -7,4 +7,6 @@
     <item name="type" type="id"/>
     <item name="data" type="id"/>
     <item name="uri" type="id"/>
+
+    <item name="express_swipe" type="id"/>
 </resources>

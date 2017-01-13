@@ -20,7 +20,7 @@ public class UserInfo extends BaseBean {
     private String UVehicleId;//绑定车辆id
     private String UBindVehicleStatus;//绑定车辆状态
     private String UBindSendUnitId;    //绑定发货单位id
-    private String UBindUnitStatus;//绑定发货单位状态0待审核（未绑定）、1审核通过（已绑定）、2审核不通过（绑定失败）
+    private String UBindSendUnitStatus;//绑定发货单位状态0待审核（未绑定）、1审核通过（已绑定）、2审核不通过（绑定失败）
     private String UBindSendUnitAuditor;   //绑定发货单位审核人
     private String UBindSendUnitTime;    //绑定发货单位时间
     private String UWorkStatus;//上下班状态下班0、上班1
@@ -134,12 +134,12 @@ public class UserInfo extends BaseBean {
         this.UBindSendUnitId = UBindSendUnitId;
     }
 
-    public String getUBindUnitStatus() {
-        return UBindUnitStatus;
+    public String getUBindSendUnitStatus() {
+        return UBindSendUnitStatus;
     }
 
-    public void setUBindUnitStatus(String UBindUnitStatus) {
-        this.UBindUnitStatus = UBindUnitStatus;
+    public void setUBindSendUnitStatus(String UBindSendUnitStatus) {
+        this.UBindSendUnitStatus = UBindSendUnitStatus;
     }
 
     public String getUBindSendUnitAuditor() {
@@ -206,7 +206,7 @@ public class UserInfo extends BaseBean {
         UnitName = unitName;
     }
 
-    public UserInfo(String UID, String UName, String UPhone, String UUnitId, String UAuditStatus, String UAuditorId, String UBindUnitTime, String UDriveImg, String UDriveNo, String UHeadImg, String UVehicleId, String UBindVehicleStatus, String UBindSendUnitId, String UBindUnitStatus, String UBindSendUnitAuditor, String UBindSendUnitTime, String UWorkStatus, String UUserType, String URoleCode, String UUnitRole, String UStatus) {
+    public UserInfo(String UID, String UName, String UPhone, String UUnitId, String UAuditStatus, String UAuditorId, String UBindUnitTime, String UDriveImg, String UDriveNo, String UHeadImg, String UVehicleId, String UBindVehicleStatus, String UBindSendUnitId, String UBindSendUnitStatus, String UBindSendUnitAuditor, String UBindSendUnitTime, String UWorkStatus, String UUserType, String URoleCode, String UUnitRole, String UStatus) {
         this.UID = UID;
         this.UName = UName;
         this.UPhone = UPhone;
@@ -220,7 +220,7 @@ public class UserInfo extends BaseBean {
         this.UVehicleId = UVehicleId;
         this.UBindVehicleStatus = UBindVehicleStatus;
         this.UBindSendUnitId = UBindSendUnitId;
-        this.UBindUnitStatus = UBindUnitStatus;
+        this.UBindSendUnitStatus = UBindSendUnitStatus;
         this.UBindSendUnitAuditor = UBindSendUnitAuditor;
         this.UBindSendUnitTime = UBindSendUnitTime;
         this.UWorkStatus = UWorkStatus;
@@ -248,7 +248,7 @@ public class UserInfo extends BaseBean {
                 ", UVehicleId='" + UVehicleId + '\'' +
                 ", UBindVehicleStatus='" + UBindVehicleStatus + '\'' +
                 ", UBindSendUnitId='" + UBindSendUnitId + '\'' +
-                ", UBindUnitStatus='" + UBindUnitStatus + '\'' +
+                ", UBindSendUnitStatus='" + UBindSendUnitStatus + '\'' +
                 ", UBindSendUnitAuditor='" + UBindSendUnitAuditor + '\'' +
                 ", UBindSendUnitTime='" + UBindSendUnitTime + '\'' +
                 ", UWorkStatus='" + UWorkStatus + '\'' +

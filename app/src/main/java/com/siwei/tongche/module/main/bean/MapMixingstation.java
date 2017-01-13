@@ -21,6 +21,7 @@ public class MapMixingstation extends BaseBean {
      * MSMemo :
      */
 
+
     private String MSID;
     private String MSName;
     private String MSAddress;
@@ -101,5 +102,70 @@ public class MapMixingstation extends BaseBean {
 
     public void setMSMemo(String MSMemo) {
         this.MSMemo = MSMemo;
+    }
+
+    //-----------------------新接口---------------------
+
+    /**
+     * UnitName : 上海发货单位
+     * UnitAddress : 嘿嘿嘿嘿IEhi而后IE
+     * ContactorName : Sender
+     * ContactorPhone : 12122112211
+     * UnitGpsx : UnitGpsx
+     * UnitGpsy : UnitGpsy
+     */
+
+    private String UnitName;
+    private String UnitAddress;
+    private String ContactorName;
+    private String ContactorPhone;
+    private String UnitGpsx;
+    private String UnitGpsy;
+    public String getUnitName() {
+        return UnitName;
+    }
+
+    public void setUnitName(String UnitName) {
+        this.UnitName = UnitName;
+    }
+
+    public String getUnitAddress() {
+        return UnitAddress;
+    }
+
+    public void setUnitAddress(String UnitAddress) {
+        this.UnitAddress = UnitAddress;
+    }
+
+    public String getContactorName() {
+        return ContactorName;
+    }
+
+    public void setContactorName(String ContactorName) {
+        this.ContactorName = ContactorName;
+    }
+
+    public String getContactorPhone() {
+        return ContactorPhone;
+    }
+
+    public void setContactorPhone(String ContactorPhone) {
+        this.ContactorPhone = ContactorPhone;
+    }
+
+    public String getUnitGpsx() {
+        return UnitGpsx;
+    }
+
+    public void setUnitGpsx(String UnitGpsx) {
+        this.UnitGpsx = UnitGpsx;
+    }
+
+    public String getUnitGpsy() {
+        return UnitGpsy;
+    }
+
+    public void setUnitGpsy(String UnitGpsy) {
+        this.UnitGpsy = UnitGpsy;
     }
 }

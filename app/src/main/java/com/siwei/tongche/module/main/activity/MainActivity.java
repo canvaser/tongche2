@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,12 +15,14 @@ import com.siwei.tongche.R;
 import com.siwei.tongche.baidumap.LocationManager;
 import com.siwei.tongche.common.AppConstants;
 import com.siwei.tongche.common.BaseActivity;
+import com.siwei.tongche.common.BaseUIOpe;
 import com.siwei.tongche.dialog.MiddleSelectPop;
 import com.siwei.tongche.dialog.NormalSelectPop;
 import com.siwei.tongche.dialog.SelectMenuBean;
 import com.siwei.tongche.events.EventTag;
 import com.siwei.tongche.module.accident.AccidentReportListActivity;
 import com.siwei.tongche.module.bind_unit.BindUserUnitActivity;
+import com.siwei.tongche.module.buildtask.BuildTaskActivity;
 import com.siwei.tongche.module.carmanager.activity.AddCarActivity;
 import com.siwei.tongche.module.gasstation.activity.AddGasListActivity;
 import com.siwei.tongche.module.login.bean.UserInfo;
@@ -27,6 +30,8 @@ import com.siwei.tongche.module.main.fragment.ExpressListFragment;
 import com.siwei.tongche.module.main.fragment.MapInfoFragment;
 import com.siwei.tongche.module.main.fragment.RentMapFragment;
 import com.siwei.tongche.module.main.fragment.TaskFragment;
+import com.siwei.tongche.module.main.ope.MainDAOpe;
+import com.siwei.tongche.module.main.ope.MainUIOpe;
 import com.siwei.tongche.module.main.ope.ScanResultOpe;
 import com.siwei.tongche.module.scan.activity.UserInfoActivity;
 import com.siwei.tongche.module.scan.fragment.TicketFrag;
@@ -49,74 +54,31 @@ import de.greenrobot.event.EventBus;
  * 首页
  */
 public class MainActivity extends BaseActivity {
-
-    MapInfoFragment mMapInfoFragment;
-    TaskFragment mTaskFragment;
-    ExpressListFragment mExpressListFragment;
-    RentMapFragment mRentMapFragment;
-
-    ArrayList<Fragment> mAllFragments = new ArrayList<>();
     private UserInfo mUserInfo;
 
-    ArrayList<String> mTypeData = new ArrayList<String>();
-
-    ArrayList<SelectMenuBean> mMenuData = new ArrayList<SelectMenuBean>();
-
-    @Bind(R.id.layout_unbind)
-    LinearLayout mLayout_unbind;//未绑定单位页面
-
-    @Bind(R.id.bindUnit_hint)
-    TextView mBindUnit_hint;//绑定单位提示  您尚未绑定单位,请扫描管理员二维码\n或者前往个人中心绑定
-
-    @Bind(R.id.main_title)//首页标题
-    TextView mTvMain_title;
-
     ScanResultOpe scanResultOpe;
-
+    MainDAOpe mMainDAOpe;
+    MainUIOpe mMainUIOpe;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mUserInfo = CacheUtils.getLocalUserInfo();
         scanResultOpe= new ScanResultOpe();
-        mUserInfo.setURoleCode(AppConstants.USER_TYPE.TYPE_DRIVER);
-        mUserInfo.setUUnitRole(AppConstants.USER_UNIT_ROLE.ROLE_MANAGER);//管理员
+        mMainDAOpe=new MainDAOpe(mUserInfo);
+        mMainUIOpe=new MainUIOpe(this,rootView);
         CacheUtils.setLocalUserInfo(mUserInfo);
         getLocation();
-        initView();
+        mMainUIOpe.initView(this,mUserInfo);
+        toggleFragment(0);
     }
+
+
 
     @Override
     protected void onStart() {
         super.onStart();
-        mLayout_unbind.setVisibility(View.GONE);
-        checkUnit();
-    }
-
-    /**
-     * 检查单位是否绑定
-     */
-    private void checkUnit() {
-        if (mUserInfo.getURoleCode().equals(AppConstants.USER_TYPE.TYPE_DRIVER)) {//司机
-            if (MyRegexpUtils.isEmpty(mUserInfo.getUVehicleId())) {//没有绑定车辆
-                mLayout_unbind.setVisibility(View.VISIBLE);
-                mBindUnit_hint.setText("您尚未绑定车辆，请扫描管理员二维码\n或者前往个人中心绑定");
-            } else {
-                mLayout_unbind.setVisibility(View.GONE);
-            }
-
-            if (MyRegexpUtils.isEmpty(mUserInfo.getUBindSendUnitId())) {//没有绑定发货单位
-                mLayout_unbind.setVisibility(View.VISIBLE);
-                mBindUnit_hint.setText("您尚未发货单位，请扫描管理员二维码\n或者前往个人中心绑定");
-            } else {
-                mLayout_unbind.setVisibility(View.GONE);
-            }
-        }
-        if (MyRegexpUtils.isEmpty(mUserInfo.getUUnitId())) {//没有绑定单位
-            mLayout_unbind.setVisibility(View.VISIBLE);
-            mBindUnit_hint.setText("您尚未绑定单位，请扫描管理员二维码\n或者前往个人中心绑定");
-        } else {
-            mLayout_unbind.setVisibility(View.GONE);
-        }
+        mMainUIOpe.getmLayout_unbind().setVisibility(View.VISIBLE);
+        mMainUIOpe.checkUnit(mUserInfo);
     }
 
     @Override
@@ -124,71 +86,18 @@ public class MainActivity extends BaseActivity {
         return R.layout.activity_main;
     }
 
-    private void initView() {
-        switch (mUserInfo.getURoleCode()) {
-            case AppConstants.USER_TYPE.TYPE_DRIVER://司机
-                mExpressListFragment = new ExpressListFragment();
-                mAllFragments.add(mExpressListFragment);
-                mMenuData.add(new SelectMenuBean("扫一扫  ", R.drawable.menu_scan));
-                mMenuData.add(new SelectMenuBean("故障报告", R.drawable.menu_accident_report));
-                mMenuData.add(new SelectMenuBean("加点油吧", R.drawable.menu_gas_station));
-                break;
-            case AppConstants.USER_TYPE.TYPE_SENDER_UNIT://发货单位工作人员
-                mMapInfoFragment = new MapInfoFragment();
-                mTaskFragment = new TaskFragment();
-                mAllFragments.add(mTaskFragment);
-                mAllFragments.add(mMapInfoFragment);
-                mTypeData.add("任务");
-                mTypeData.add("地图");
-                mMenuData.add(new SelectMenuBean("扫一扫", R.drawable.menu_scan));
-                break;
-            case AppConstants.USER_TYPE.TYPE_CONSIGNEE_UNIT://收货单位工作人员
-                mMenuData.add(new SelectMenuBean("扫一扫", R.drawable.menu_scan));
-                //管理员
-                if (mUserInfo.getUUnitRole().equals(AppConstants.USER_UNIT_ROLE.ROLE_CREATOR) || mUserInfo.getUUnitRole().equals(AppConstants.USER_UNIT_ROLE.ROLE_MANAGER)) {
-                    //是管理员可以发送任务
-                    mMenuData.add(new SelectMenuBean("新建任务", R.drawable.menu_scan));
-                    mTypeData.add("地图");
-                    mTypeData.add("任务");
-                    //
-                    mMapInfoFragment = new MapInfoFragment();
-                    mTaskFragment = new TaskFragment();
-                    mAllFragments.add(mMapInfoFragment);
-                    mAllFragments.add(mTaskFragment);
-                } else {
-                    mTypeData.add("小票");
-                    mTypeData.add("任务");
-                    mExpressListFragment = new ExpressListFragment();
-                    mTaskFragment = new TaskFragment();
-                    mAllFragments.add(mExpressListFragment);
-                    mAllFragments.add(mTaskFragment);
-                }
-                break;
-            case AppConstants.USER_TYPE.TYPE_RENT_UNIT://租赁公司工作人员
-                mRentMapFragment = new RentMapFragment();
-                mAllFragments.add(mRentMapFragment);
-                mMenuData.add(new SelectMenuBean("扫一扫", R.drawable.menu_scan));
-                break;
-        }
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        for (Fragment fragment : mAllFragments) {
-            fragmentTransaction.add(R.id.forwarding_fragment_container, fragment);
-        }
-        fragmentTransaction.commit();
-        toggleFragment(0);
-    }
 
     private void toggleFragment(int index) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        for (Fragment fragment : mAllFragments) {
+        for (Fragment fragment : mMainUIOpe.getmAllFragments()) {
             fragmentTransaction.hide(fragment);
         }
-        fragmentTransaction.show(mAllFragments.get(index));
+        fragmentTransaction.show(mMainUIOpe.getmAllFragments().get(index));
         fragmentTransaction.commit();
 
         //设置首页标题
-        if(mTypeData!=null&&mTypeData.size()>0){
-            mTvMain_title.setText(mTypeData.get(index));
+        if(mMainDAOpe.getmTypeData()!=null&&mMainDAOpe.getmTypeData().size()>0){
+            mMainUIOpe.getmTvMain_title().setText(mMainDAOpe.getmTypeData().get(index));
         }
     }
 
@@ -221,7 +130,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void showMenu(View view) {
-        NormalSelectPop normalSelectPop = new NormalSelectPop(this, mMenuData, new NormalSelectPop.OnItemClickListener() {
+        NormalSelectPop normalSelectPop = new NormalSelectPop(this, mMainDAOpe.getmMenuData(), new NormalSelectPop.OnItemClickListener() {
             @Override
             public void itemClick(String title, int position) {
                 if (title.equals("新建任务")) {//新建任务
@@ -241,7 +150,7 @@ public class MainActivity extends BaseActivity {
                 }
 
             }
-        }, mMenuData.size());
+        }, mMainDAOpe.getmMenuData().size());
         normalSelectPop.showBlowView(view, DensityUtil.dip2px(2));
     }
 
@@ -249,15 +158,15 @@ public class MainActivity extends BaseActivity {
      * 选择类别
      */
     private void showMiddleDialog(View view) {
-        if (mTypeData.size() == 0) {
+        if (mMainDAOpe.getmTypeData().size() == 0) {
             return;
         }
-        MiddleSelectPop typePop = new MiddleSelectPop(this, mTypeData, new MiddleSelectPop.OnItemClickListener() {
+        MiddleSelectPop typePop = new MiddleSelectPop(this, mMainDAOpe.getmTypeData(), new MiddleSelectPop.OnItemClickListener() {
             @Override
             public void itemClick(String title, int position) {
                 toggleFragment(position);
             }
-        }, 100, mTypeData.size());
+        }, 100, mMainDAOpe.getmTypeData().size());
         typePop.showBlowView(view, DensityUtil.dip2px(10));
     }
 

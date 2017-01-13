@@ -35,7 +35,7 @@ public class AddGasListUIOpe extends BaseUIOpe{
         mAddGasAdapter=new MyBaseAdapter<String>(null,context) {
             @Override
             public View getItemView(int position, View convertView, ViewGroup parent, String model) {
-                MyViewHolder viewHolder=new MyViewHolder(context,parent,R.layout.item_add_gas,position);
+                MyViewHolder viewHolder=MyViewHolder.getViewHolder(context,convertView,parent,R.layout.item_add_gas,position);
                 return viewHolder.getConvertView();
             }
         };

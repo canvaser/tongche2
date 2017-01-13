@@ -23,6 +23,7 @@ import com.siwei.tongche.module.mycollect.MyCollectActivity;
 import com.siwei.tongche.module.usercenter.bean.DriverVehicleInfoBean;
 import com.siwei.tongche.module.usercenter.dialog.QRCodeDialog;
 import com.siwei.tongche.module.usercenter.ope.UserCenterUIOpe;
+import com.siwei.tongche.module.drivermanager.activity.DriverManagerActivity;
 import com.siwei.tongche.module.usermanager.UserManagerActivity;
 import com.siwei.tongche.utils.CacheUtils;
 import com.siwei.tongche.utils.MyLogUtils;
@@ -70,7 +71,7 @@ public class UserCenterActivity extends BaseActivity implements View.OnClickList
                 startActivity(new Intent(this,UserManagerActivity.class));
                 break;
             case R.id.userCenter_layout_driverManage://驾驶员管理
-                startActivity(new Intent(this,UserManagerActivity.class));
+                startActivity(new Intent(this,DriverManagerActivity.class));
                 break;
             case R.id.userCenter_layout_carManage://车辆管理
                 startActivity(new Intent(this,CarManagerActivity.class));

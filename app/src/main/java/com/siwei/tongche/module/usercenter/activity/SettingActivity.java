@@ -7,58 +7,28 @@ import android.view.View;
 import com.siwei.tongche.R;
 import com.siwei.tongche.common.BaseActivity;
 import com.siwei.tongche.module.income_setting.IncomeSettingActivity;
+import com.siwei.tongche.module.usercenter.ope.SettingUIOpe;
 import com.siwei.tongche.views.SDSimpleSetItemView;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 
 public class SettingActivity extends BaseActivity implements View.OnClickListener {
-    @Bind(R.id.setting_layout_messageSetting)
-    SDSimpleSetItemView mSetting_layout_messageSetting;
 
-    @Bind(R.id.setting_layout_incomeSetting)
-    SDSimpleSetItemView mSetting_layout_incomeSetting;
+    SettingUIOpe uiOpe;
 
-    @Bind(R.id.setting_layout_updatePwd)
-    SDSimpleSetItemView mSetting_layout_updatePwd;
-    @Bind(R.id.setting_layout_feedBack)
-    SDSimpleSetItemView mSetting_layout_feedBack;
-    @Bind(R.id.setting_layout_about)
-    SDSimpleSetItemView mSetting_layout_about;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        uiOpe= new SettingUIOpe(this,rootView);
         setTitle("设置");
-        initView();
     }
-
-    private void initView() {
-        mSetting_layout_messageSetting.setTitleText("消息设置");
-        mSetting_layout_messageSetting.setTitleImage(R.drawable.selector_pressed_usercenter_manaager_cars);
-        mSetting_layout_messageSetting.setOnClickListener(this);
-
-        mSetting_layout_incomeSetting.setTitleText("工资设置");
-        mSetting_layout_incomeSetting.setTitleImage(R.drawable.selector_pressed_usercenter_manaager_cars);
-        mSetting_layout_incomeSetting.setOnClickListener(this);
-
-        mSetting_layout_updatePwd.setTitleText("重置密码");
-        mSetting_layout_updatePwd.setTitleImage(R.drawable.selector_pressed_usercenter_manaager_cars);
-        mSetting_layout_updatePwd.setOnClickListener(this);
-
-        mSetting_layout_feedBack.setTitleText("意见反馈");
-        mSetting_layout_feedBack.setTitleImage(R.drawable.selector_pressed_usercenter_manaager_cars);
-        mSetting_layout_feedBack.setOnClickListener(this);
-
-        mSetting_layout_about.setTitleText("关于我们");
-        mSetting_layout_about.setTitleImage(R.drawable.selector_pressed_usercenter_manaager_cars);
-        mSetting_layout_about.setOnClickListener(this);
-    }
-
     @Override
     public int getContentView() {
         return R.layout.activity_setting;
     }
 
-    @Override
+    @OnClick({R.id.setting_layout_messageSetting,R.id.setting_layout_incomeSetting,R.id.setting_layout_feedBack,R.id.setting_layout_updatePwd,R.id.setting_layout_about})
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.setting_layout_messageSetting://消息设置

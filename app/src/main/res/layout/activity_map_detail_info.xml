@@ -24,9 +24,11 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_alignParentBottom="true"
-        android:orientation="vertical">
-        <include layout="@layout/layout_express_title"
-            />
+        android:orientation="vertical"
+        android:id="@+id/layout_bottom">
+
+        <include layout="@layout/item_mixing_station"/>
+
     </LinearLayout>
 
         <ImageButton

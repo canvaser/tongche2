@@ -16,8 +16,9 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center"
-            android:background="#9ACE48"
-            android:id="@+id/task_top_ing">
+            android:background="@drawable/selector_task1"
+            android:id="@+id/task_top_ing"
+            >
 
             <TextView
                 android:id="@+id/task_ing_count"
@@ -42,10 +43,11 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center"
-            android:background="#B89BC9"
+            android:background="@drawable/selector_task2"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:id="@+id/task_top_new">
+            android:id="@+id/task_top_new"
+            android:clickable="true">
 
             <TextView
                 android:id="@+id/task_new_count"
@@ -70,8 +72,9 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center"
-            android:background="#D9E021"
-            android:id="@+id/task_top_finished">
+            android:background="@drawable/selector_task3"
+            android:id="@+id/task_top_finished"
+            android:clickable="true">
 
             <TextView
                 android:id="@+id/task_finished_count"

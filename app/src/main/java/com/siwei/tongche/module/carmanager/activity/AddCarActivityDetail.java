@@ -96,6 +96,7 @@ public class AddCarActivityDetail extends BaseActivity {
     }
 
     private void initView(CarDetailInfoBean carDetailInfo) {
+
         car_plate.setText(plate);
         car_carNo.setText(carDetailInfo.getV_NO());
         car_size.setText(carDetailInfo.getVGgxh());
@@ -144,12 +145,12 @@ public class AddCarActivityDetail extends BaseActivity {
         JSONObject params=new JSONObject();
         params.put("VPlateNumber",plate);
         params.put("V_NO",carNo);
-        params.put("VGgxh",mCarDetailInfoBean.getVGgxh());
+        params.put("VGgxh",size);
         params.put("VBrand",brand);
         params.put("VUnitID",unit);
-        params.put("VAgeLimit",mCarDetailInfoBean.getVAgeLimit());
-        params.put("VTravelMiles",mCarDetailInfoBean.getVTravelMiles());
-        params.put("VKeepMiles",mCarDetailInfoBean.getVKeepMiles());
+        params.put("VAgeLimit",years);
+        params.put("VTravelMiles",mileage);
+        params.put("VKeepMiles",maintenance_mileage);
         params.put("VImg",mVImg);
         params.put("VTravelImg",mVTravelImg);
         params.put("DriverID",CacheUtils.getLocalUserInfo().getUID());

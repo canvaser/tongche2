@@ -25,4 +25,12 @@
     <color name="light_blue">#edf6ff</color>
 
 
+    <!--任务-->
+    <color name="task_top_00">#9ACE48</color>
+    <color name="task_top_01">#D1DDB1</color>
+    <color name="task_top_10">#B89BC9</color>
+    <color name="task_top_11">#DFC5EF</color>
+    <color name="task_top_20">#D9E021</color>
+    <color name="task_top_21">#efefca</color>
+
 </resources>

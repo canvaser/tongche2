@@ -28,7 +28,7 @@ public class MyViewHolder {
 	private int mPosition;
 	private View mConvertView;
 
-	public MyViewHolder(Context context,ViewGroup parent,int layoutId, int position) {
+	private MyViewHolder(Context context,ViewGroup parent,int layoutId, int position) {
 		mViews = new SparseArray<View>();
 		mPosition = position;
 		mConvertView = LayoutInflater.from(context).inflate(layoutId, parent, false);
@@ -45,7 +45,6 @@ public class MyViewHolder {
 	 * @return
 	 */
 	public static MyViewHolder getViewHolder(Context context,View convertView,ViewGroup parent,int layoutId,int position){
-
 		if(convertView == null){
 			return new MyViewHolder(context,parent, layoutId, position);
 		}else{

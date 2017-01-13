@@ -105,10 +105,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="  管理员"
+                    android:id="@+id/check"
                     android:button="@drawable/selector_check_box"/>
             </LinearLayout>
 
             <Button
+                android:id="@+id/btn_submit"
                 style="@style/Style_Btn_normal"
                 android:text="提交"/>
 

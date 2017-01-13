@@ -256,6 +256,7 @@
         <activity android:name=".module.carmanager.activity.AddCarActivity" />
         <activity android:name=".module.carmanager.activity.AddCarActivityDetail" />
         <activity android:name=".module.carmanager.activity.CarManagerActivity" />
+        <activity android:name=".module.drivermanager.activity.DriverManagerActivity" />
         <activity android:name=".module.main.activity.ExpressListActivity" />
         <activity android:name=".module.main.activity.MainActivity" />
         //故障地址
@@ -269,11 +270,18 @@
         <activity android:name=".module.scan.activity.UserInfoActivity" />
         //用户信息
         <activity
-            android:name=".module.main.activity.BuildTaskActivity"
+            android:name=".module.buildtask.BuildTaskActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".module.main.activity.SignRulesActivity" />
         <activity android:name=".module.main.activity.MapDetailInfoActivity" />
-        <activity android:name=".module.main.activity.SelectRoleActivity"></activity>
+        <activity android:name=".module.main.activity.SelectRoleActivity"/>
+        //车辆管理列表点击进入车辆详情
+        <activity android:name=".module.carmanager.activity.CarDetailActivity" />
+        <activity android:name=".baidumap.BNDemoGuideActivity"/>
+        //驾驶员详情
+        <activity android:name=".module.drivermanager.activity.DriverDetailInfoActivity"/>
+        //小票详情
+        <activity android:name=".module.message.activity.TicketDetailActivity"/>
     </application>
 
 </manifest>

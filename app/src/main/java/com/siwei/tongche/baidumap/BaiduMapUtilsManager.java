@@ -31,7 +31,6 @@ import java.util.List;
 /**
  * Created by HanJinLiang on 2016-12-26.
  */
-
 public class BaiduMapUtilsManager {
     final public static int MAP_TYPE_CAR=0X51;
     final public static int MAP_TYPE_PROJECT=0X52;

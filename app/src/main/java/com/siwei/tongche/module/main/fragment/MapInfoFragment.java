@@ -40,6 +40,7 @@ public class MapInfoFragment extends Fragment {
     @Bind(R.id.mapView)
     MapView mMapView;
     BaiduMapUtilsManager mBaiduMapUtilsManager;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -57,7 +58,6 @@ public class MapInfoFragment extends Fragment {
                 //地图加载完成
             }
         });
-
 //        mBaiduMapUtilsManager.addOverlayRandom(new BaiduMapUtilsManager.OnMyMarkerClick() {
 //            @Override
 //            public void onMyMarkerClick(int index) {
@@ -76,25 +76,25 @@ public class MapInfoFragment extends Fragment {
                 toggleSelectLayout();
                 return;
             case R.id.layout_map_project_today://今日工程
-                title="今日工程";
+                title=MapCategoryActivity.CATEGORY_PROJECT_TODAY;
                 break;
             case R.id.layout_map_project_my://我的工程
-                title="我的工程";
+                title=MapCategoryActivity.CATEGORY_PROJECT_MINE;
                 break;
-            case R.id.layout_map_project_nearby://我的工程
-                title="我的工程";
+            case R.id.layout_map_project_nearby://附近工程
+                title=MapCategoryActivity.CATEGORY_PROJECT_NEARBY;
                 break;
             case R.id.layout_map_car_today://今日车辆
-                title="今日车辆";
+                title=MapCategoryActivity.CATEGORY_CAR_TODAY;
                 break;
             case R.id.layout_map_car_online://排队车辆
-                title="排队车辆";
+                title=MapCategoryActivity.CATEGORY_CAR_INLINE;
                 break;
             case R.id.layout_map_mixingStation_nearly://附近搅拌站
-                title="附近搅拌站";
+                title=MapCategoryActivity.CATEGORY_MIXING_STATION;
                 break;
         }
-        startActivity(new Intent(getContext(), MapCategoryActivity.class).putExtra("title",title));
+        startActivity(new Intent(getContext(), MapCategoryActivity.class).putExtra(MapCategoryActivity.CATEGORY_TYPE,title));
 //        toggleSelectLayout();
     }
 

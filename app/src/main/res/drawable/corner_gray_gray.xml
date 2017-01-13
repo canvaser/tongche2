@@ -4,5 +4,5 @@
     <corners android:radius="10dp" />
 
     <!-- 实心填充 -->
-    <solid android:color="@color/bg_gray" />
+    <solid android:color="@color/text_gray" />
 </shape>

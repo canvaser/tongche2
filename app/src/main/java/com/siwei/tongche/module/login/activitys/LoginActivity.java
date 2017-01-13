@@ -165,12 +165,12 @@ public class LoginActivity extends BaseActivity {
 //	 * @param userInfo
 //	 */
 	protected void parseLoginJson(UserInfo userInfo) {
+		CacheUtils.setLocalUserInfo(userInfo);
 		if(userInfo.getUUserType()==null || userInfo.getUUserType().equals("0")){
 			startActivity(new Intent(this,SelectRoleActivity.class));
 			finish();
 			return;
 		}
-		CacheUtils.setLocalUserInfo(userInfo);
 		startActivity(new Intent(this, MainActivity.class));
 	}
 

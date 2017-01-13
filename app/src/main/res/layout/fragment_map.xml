@@ -33,8 +33,8 @@
                 style="@style/TextView_normal_white"
                 android:text="今日工程"
                 android:id="@+id/map_project_today"
-                android:drawablePadding="10dp"
-                android:drawableLeft="@drawable/icon_phone"/>
+                android:drawablePadding="5dp"
+                android:drawableLeft="@drawable/icon_project"/>
 
         </LinearLayout>
 
@@ -54,7 +54,7 @@
                 android:text="我的工程"
                 android:id="@+id/map_project_my"
                 android:drawablePadding="10dp"
-                android:drawableLeft="@drawable/icon_phone"/>
+                android:drawableLeft="@drawable/icon_project"/>
 
 
         </LinearLayout>
@@ -72,8 +72,8 @@
                 style="@style/TextView_normal_white"
                 android:text="附近工程"
                 android:id="@+id/map_project_nearby"
-                android:drawablePadding="10dp"
-                android:drawableLeft="@drawable/icon_phone"/>
+                android:drawablePadding="5dp"
+                android:drawableLeft="@drawable/icon_project"/>
 
 
         </LinearLayout>
@@ -98,8 +98,8 @@
                 style="@style/TextView_normal_white"
                 android:text="今日车辆"
                 android:id="@+id/map_car_today"
-                android:drawablePadding="10dp"
-                android:drawableLeft="@drawable/icon_phone"/>
+                android:drawablePadding="5dp"
+                android:drawableLeft="@drawable/icon_car_white"/>
 
         </LinearLayout>
 
@@ -118,8 +118,8 @@
                 style="@style/TextView_normal_white"
                 android:text="排队车辆"
                 android:id="@+id/map_car_online"
-                android:drawablePadding="10dp"
-                android:drawableLeft="@drawable/icon_phone"/>
+                android:drawablePadding="5dp"
+                android:drawableLeft="@drawable/icon_car_white"/>
 
 
         </LinearLayout>
@@ -137,8 +137,8 @@
                 style="@style/TextView_normal_white"
                 android:text="附近拌站"
                 android:id="@+id/map_mixingStation_nearly"
-                android:drawablePadding="10dp"
-                android:drawableLeft="@drawable/icon_phone"/>
+                android:drawablePadding="5dp"
+                android:drawableLeft="@drawable/map_mixingstation"/>
 
 
         </LinearLayout>

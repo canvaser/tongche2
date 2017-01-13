@@ -80,7 +80,7 @@ public class NormalSelectPop extends PopupWindow {
         dialog_listview.setAdapter(new MyBaseAdapter<SelectMenuBean>(mDatas,mContext) {
             @Override
             public View getItemView(int position, View convertView, ViewGroup parent, SelectMenuBean model) {
-                MyViewHolder myViewHolder=new MyViewHolder(mContext,parent,R.layout.item_select_menu,position);
+                MyViewHolder myViewHolder= MyViewHolder.getViewHolder(mContext,convertView,parent,R.layout.item_select_menu,position);
                 myViewHolder.setText(R.id.dialog_item_txt,model.getMenuName());
                 myViewHolder.setImageResource(R.id.menu_item_icon,model.getIconRes());
                 return myViewHolder.getConvertView();

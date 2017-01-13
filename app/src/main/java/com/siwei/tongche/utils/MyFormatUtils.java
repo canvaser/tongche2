@@ -14,6 +14,9 @@ import java.util.Date;
  */
 public class MyFormatUtils {
 	public static long toLong(String obj) {
+		if(obj==null||obj.equals("")){
+			return 0;
+		}
 		long l =Long.parseLong(obj);
 		return l;
 	}
@@ -113,9 +116,13 @@ public class MyFormatUtils {
 	 * @return
 	 */
 	public static Double toDouble(Object obj) {
-		if (obj != null && !obj.equals("")) {
-			return nvl(obj).equals("") ? 0.0 : Double.parseDouble(obj
-					.toString());
+		try {
+			if (obj != null && !obj.equals("")) {
+				return nvl(obj).equals("") ? 0.0 : Double.parseDouble(obj
+						.toString());
+			}
+		}catch (NumberFormatException e){
+			e.printStackTrace();
 		}
 		return 0.0;
 	}

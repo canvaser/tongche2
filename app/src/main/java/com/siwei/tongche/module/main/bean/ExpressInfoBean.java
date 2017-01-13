@@ -87,6 +87,15 @@ public class ExpressInfoBean extends BaseBean {
     private String IsCollect;//是否收藏
     private String TMemo;//备注
     private String TQSStatus;//小票签收状态 未签收0、已签收1、作废2
+    private String TID;
+
+    public String getTID() {
+        return TID;
+    }
+
+    public void setTID(String TID) {
+        this.TID = TID;
+    }
 
     public String getTQSStatus() {
         return TQSStatus;

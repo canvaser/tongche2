@@ -11,6 +11,7 @@ import com.siwei.tongche.common.BaseActivity;
 import com.siwei.tongche.http.MyHttpUtil;
 import com.siwei.tongche.http.MyUrls;
 import com.siwei.tongche.module.usercenter.bean.MessageSetting;
+import com.siwei.tongche.module.usercenter.ope.MessageSettingUIOpe;
 import com.siwei.tongche.utils.CacheUtils;
 import com.siwei.tongche.utils.MyLogUtils;
 
@@ -22,13 +23,16 @@ import butterknife.Bind;
  * 消息设置
  */
 public class MessageSettingActivity extends BaseActivity implements CompoundButton.OnCheckedChangeListener {
-    @Bind({R.id.sb_all,R.id.sb_express, R.id.sb_car,R.id.sb_user,R.id.sb_task,R.id.sb_notify,R.id.sb_system})
-    List<SwitchButton> sb_lists;
+
 
     private MessageSetting mMessageSetting;
+
+    MessageSettingUIOpe uiOpe;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        uiOpe= new MessageSettingUIOpe(this,rootView);
         initView();
         loadData();
     }
@@ -42,11 +46,11 @@ public class MessageSettingActivity extends BaseActivity implements CompoundButt
                 try {
                         mMessageSetting = (MessageSetting) object;
                     if (mMessageSetting != null) {
-                        sb_lists.get(0).setChecked(string2Boolean(mMessageSetting.getACCIDENT()));
-                        sb_lists.get(1).setChecked(string2Boolean(mMessageSetting.getSIGN_BACK()));
-                        sb_lists.get(2).setChecked(string2Boolean(mMessageSetting.getSIGN_LOSE()));
-                        sb_lists.get(3).setChecked(string2Boolean(mMessageSetting.getTASK_PUST()));
-                        sb_lists.get(4).setChecked(string2Boolean(mMessageSetting.getARRIVED_MSG()));
+                        uiOpe.getSb_lists().get(0).setChecked(string2Boolean(mMessageSetting.getACCIDENT()));
+                        uiOpe.getSb_lists().get(1).setChecked(string2Boolean(mMessageSetting.getSIGN_BACK()));
+                        uiOpe.getSb_lists().get(2).setChecked(string2Boolean(mMessageSetting.getSIGN_LOSE()));
+                        uiOpe.getSb_lists().get(3).setChecked(string2Boolean(mMessageSetting.getTASK_PUST()));
+                        uiOpe.getSb_lists().get(4).setChecked(string2Boolean(mMessageSetting.getARRIVED_MSG()));
                     }
                 } catch (Exception e) {
                 }
@@ -80,7 +84,7 @@ public class MessageSettingActivity extends BaseActivity implements CompoundButt
 
     private void initView() {
         setTitle("消息设置");
-        for (SwitchButton switchButton:sb_lists){
+        for (SwitchButton switchButton:uiOpe.getSb_lists()){
             switchButton.setBackMeasureRatio(2.0f);//设置背景长度
             switchButton.setOnCheckedChangeListener(this);
         }
@@ -100,7 +104,7 @@ public class MessageSettingActivity extends BaseActivity implements CompoundButt
         }
         switch (buttonView.getId()){
             case R.id.sb_all://全部
-                for(SwitchButton switchButton:sb_lists){
+                for(SwitchButton switchButton:uiOpe.getSb_lists()){
                     if(switchButton!=buttonView){
                         switchButton.setChecked(isChecked);
                     }
